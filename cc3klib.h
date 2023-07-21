@@ -12,6 +12,11 @@
 #include <compare>
 using namespace std;
 
+class Game;
+class GameObject;
+class Map;
+class Cell;
+
 enum MapItemType{HUMAN, DWARF, ELF, MERCHANT,HALFLING,
 ORCS, DRAGON, SMALLGOLD, NORMALGOLD, MERCHANTHOARD, DRAGONHOARD,
 BA, BD, WA, WD, WA, WD, RH, PH};

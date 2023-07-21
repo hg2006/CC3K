@@ -15,7 +15,6 @@ using namespace std;
 class Game;
 class GameObject;
 class Map;
-class Cell;
 
 enum MapItemType{HUMAN, DWARF, ELF, MERCHANT,HALFLING,
 ORCS, DRAGON, SMALLGOLD, NORMALGOLD, MERCHANTHOARD, DRAGONHOARD,

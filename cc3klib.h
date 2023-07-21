@@ -10,6 +10,7 @@
 #include <map>
 #include <vector>
 #include <compare>
+#include <memory>
 
 using namespace std;
 

@@ -13,6 +13,7 @@ struct Game {
     Game();
     void UpdateGame ();
     void LevelUp ();
+    string Render ();
     void Restart ();
     void GameOver ();
     void ScoreBoard ();

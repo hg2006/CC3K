@@ -5,7 +5,7 @@ class Player : public BuffedPlayer{
 protected:
     int gold;
 public:
-    Player(string nameNotion = "Shade", int currentHP = 125, int maxHP = 125, int Atk = 25, int Def = 25, int gold = 0);
+    Player(int row, int col, string nameNotion = "Shade", int currentHP = 125, int maxHP = 125, int atk = 25, int def = 25, int gold = 0);
     virtual ~Player();
     void deadNotify() override;
     virtual void takePotion(const PotionType potion) const override;

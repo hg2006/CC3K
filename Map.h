@@ -15,7 +15,7 @@
 
 
 class Map{
-    vector<Cell *> tiles;   // A vector of 1975 elements
+    vector < unique_ptr<Cell> > tiles;   // A vector of 1975 elements
 
     Map();
     ~Map();
@@ -25,7 +25,7 @@ class Map{
 
 public:
     friend class Game;
-    GameObejct* GetObject(int row, int col);
+    GameObject* GetObject(int row, int col);
     CellType Getviews(int row, int col);
     void Attach(int row, int col, GameObject* obj); // attach a Gameobj to a specific cell
     void Detach(int row, int col);                  // detach a Gameobj from a specific cell  

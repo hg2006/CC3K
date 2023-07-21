@@ -11,6 +11,8 @@
 #include <vector>
 #include <compare>
 
+using namespace std;
+
 class Game;
 class GameObject;
 class Map;

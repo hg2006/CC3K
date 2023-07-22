@@ -1,8 +1,10 @@
 #include "Player.h"
+#include "cc3klib.h"
 
 class Vampire : public Player {
 public:
-    Vampire(int row, int col, string nameNotion = "Vampire", int currentHP = 50, int maxHP = 50, int atk = 25, int def = 25, int gold = 0);
+    Vampire(int row, int col, Map *map, std::string nameNotion = "Vampire", int currentHP = 50, int maxHP = 50, int atk = 25, int def = 25, int gold = 0);
     ~Vampire();
-    void attackNotify(string direction) override;
+    void changeHP(const int HP);
+    void attackNotify(std::string direction) override;
 };

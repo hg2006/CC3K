@@ -7,6 +7,10 @@ Character::Character(int row, int col, Map *map, std::string nameNotion, int cur
 
 Character::~Character(delete map);
 
+std::string Character::getName() {
+    return nameNotion;
+}
+
 void Character::deadNotify() {
     map->detach(row, col); 
 }

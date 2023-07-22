@@ -18,44 +18,46 @@ void Vampire::changeHP(const int HP) {
 
 void Vampire::attackNotify(std::string direction) {
     CellType *ct = detect();
+    GameObject *obj = nullptr;
     if (direction == "nw") {
         if (ct[0] == ENEMY) {
-            map->GetObject(row - 1, col - 1)->attacked(atk);
-            changeHP(5);
+            obj = map->GetObject(row - 1, col - 1);
         }
     } else if (direction == "no") {
         if (ct[1] == ENEMY) {
-            map->GetObject(row - 1, col)->attacked(atk);
-            changeHP(5);
+            obj = map->GetObject(row - 1, col);
         }
     } else if (direction == "ne") {
         if (ct[2] == ENEMY) {
-            map->GetObject(row - 1, col + 1)->attacked(atk);
-            changeHP(5);
+            obj = map->GetObject(row - 1, col + 1);
         }
     } else if (direction == "we") {
         if (ct[3] == ENEMY) {
-            map->GetObject(row, col - 1)->attacked(atk);
-            changeHP(5);
+            obj = map->GetObject(row, col - 1);
         }
     } else if (direction == "ea") {
         if (ct[4] == ENEMY) {
-            map->GetObject(row, col + 1)->attacked(atk);
-            changeHP(5);
+            obj = map->GetObject(row, col + 1);
         }
     } else if (direction == "sw") {
         if (ct[5] == ENEMY) {
-            map->GetObject(row + 1, col - 1)->attacked(atk);
-            changeHP(5);
+            obj= map->GetObject(row + 1, col - 1);
         }
     } else if (direction == "so") {
         if (ct[6] == ENEMY) {
-            map->GetObject(row + 1, col)->attacked(atk);
-            changeHP(5);
+            obj= map->GetObject(row + 1, col);
         }
     } else if (direction == "se") {
         if (ct[7] == ENEMY) {
-            map->GetObject(row + 1, col + 1)->attacked(atk);
+            obj = map->GetObject(row + 1, col + 1);
+        }
+    }
+
+    if (obj != nullptr) {
+        obj->attacked(atk);
+        if (obj->getName() == "Dwarf") {
+            changeHP(-5);
+        } else {
             changeHP(5);
         }
     }

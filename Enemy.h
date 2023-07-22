@@ -6,6 +6,6 @@ public:
     virtual ~Enemy();
     virtual void deadNotify() override;
     virtual void attackNotify() override;
-    virtual void attacked(const int damage) override;
+    // virtual void attacked(const int damage) override;
     virtual void moveDecision();
 };

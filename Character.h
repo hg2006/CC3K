@@ -13,6 +13,7 @@ public:
     virtual ~Character();
     // 下面这三个暂时不确定是不是const
     void setMap(Map *map);
+    std::string getName();
     virtual void deadNotify();
     virtual void attackNotify();
     virtual void attacked(const int damage);

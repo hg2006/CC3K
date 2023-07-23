@@ -202,7 +202,7 @@ void Map:: RenderMap() const{
 
         // If Player is located here
         //if(cur_col == Player_x && cur_row == Player_y )cout << '@';
-        cout << s->Render();
+        cout << s->Render1();
 
         cur_col++;
     }
@@ -247,63 +247,64 @@ vector<CellType> Map:: Getviews(int row, int col) const{
 
 
 void Map:: GenerateObject(int row, int col, MapItemType type){
-        // switch (type){
-        //     case HUMAN:
-        //         GameObject *newobj = new Human{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case DWARF:
-        //         GameObject *newobj = new Dwarf{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case ELF:
-        //         GameObject *newobj = new Elf{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case ORCS:
-        //         GameObject *newobj = new Orc{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case MERCHANT:
-        //         GameObject *newobj = new Merchant{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case DRAGON:
-        //         GameObject *newobj = new Dragon{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case HALFLING:
-        //         GameObject *newobj = new Halfling{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case SMALLGOLD:
-        //         GameObject *newobj = new Smallgold{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case NORMALGOLD:
-        //         GameObject *newobj = new Normalgold{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case MERCHANTHOARD:
-        //         GameObject *newobj = new MerchantHoard{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-        //     case DRAGONHOARD:
-        //         GameObject *newobj = new DragonHoard{row, col};
-        //         objects.emplace_back(newobj);
-        //         this->Attach(row, col, newobj);
-        //         break;
-            
+        switch (type){
+            case HUMAN:
+                GameObject *newobj = new Human{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+        
+            case DWARF:
+                GameObject *newobj = new Dwarf{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case ELF:
+                GameObject *newobj = new Elf{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case ORCS:
+                GameObject *newobj = new Orc{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case MERCHANT:
+                GameObject *newobj = new Merchant{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case DRAGON:
+                GameObject *newobj = new Dragon{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case HALFLING:
+                GameObject *newobj = new Halfling{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case SMALLGOLD:
+                GameObject *newobj = new Smallgold{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case NORMALGOLD:
+                GameObject *newobj = new Normalgold{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case MERCHANTHOARD:
+                GameObject *newobj = new MerchantHoard{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+            case DRAGONHOARD:
+                GameObject *newobj = new DragonHoard{row, col};
+                objects.emplace_back(newobj);
+                this->Attach(row, col, newobj);
+                break;
+        }
             // To be further implemented since ctor required    
             // case BA:
             // case BD:

@@ -1,7 +1,7 @@
 #include "Map.h"
 using namespace std;
 
-Map::Map (BuffedPlayer* p): tiles { vector < < unique_ptr <Cell> > temp }, player {p}
+Map::Map (BuffedPlayer* p): tiles { vector < unique_ptr <Cell> > {} }, player {p}
   { // create the initial map through hard coding
     this->genBoarderLine();
     this->genBlankLine();
@@ -374,14 +374,21 @@ void Map::genPassage2(int choice){
   }
 }
 
-void Map::genChamber4(){
+void Map::genChamber4(int choice){
   tiles.emplace_back (make_unique <VerticalWall>());
   tiles.emplace_back (make_unique <Blank>());
   tiles.emplace_back (make_unique <Blank>());
   tiles.emplace_back (make_unique <VerticalWall>());
-  for (int i = 0; i < 21; ++i){
-    tiles.emplace_back (make_unique <Room>());
+  if (choice){
+    for (int i = 0; i < 21; ++i){
+      tiles.emplace_back (make_unique <HorizontalWall>());
+    }
   }
+  else{
+    for (int i = 0; i < 21; ++i){
+      tiles.emplace_back (make_unique <Room>());
+    }
+  } 
 }
 
 void Map::genChamber5(int choice){

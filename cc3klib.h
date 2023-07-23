@@ -13,7 +13,8 @@
 #include <algorithm>
 #include <random>
 #include <cstdlib>
-#include <time>
+#include <ctime>
+
 
 class Game;
 class GameObject;

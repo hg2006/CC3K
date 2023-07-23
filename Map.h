@@ -43,7 +43,7 @@ class Map{
     void genChmWall4(int extend = 0);
     void genPassage1();
     void genPassage2(int choice = 0);
-    void genChamber4();
+    void genChamber4(int choice = 0);
     void genChamber5(int choice = 0);
     void genPassage3 (int choice = 0);
     void genChamber5Bottom(int choice = 0);

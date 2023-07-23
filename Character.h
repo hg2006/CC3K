@@ -1,6 +1,7 @@
 #include "cc3klib.h"
+#include "Object.h"
 
-class Character {
+class Character : public Object {
 protected:
     Map *map;
     string nameNotion;

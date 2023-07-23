@@ -20,6 +20,8 @@ void BuffedPlayer::moveDecision(std::string behaviour) {
         if (ct[0] == ROOM || ct[0] == PASSAGE || ct[0] == DOOR || ct[0] == STAIR) {
             --col;
             --row;
+        } else if (ct[0] == TREASURE) {
+            map->GetObject(col - 1, row - 1)->Consume(); // ??? depends on the implementation of consume in treasure
         }
     } else if (behaviour == "no") {
         if (ct[1] == ROOM || ct[1] == PASSAGE || ct[1] == DOOR || ct[1] == STAIR) {
@@ -57,4 +59,12 @@ void BuffedPlayer::moveDecision(std::string behaviour) {
 
 void BuffedPlayer::enemyIsKilled() {}
 void BuffedPlayer::endOfTurn() {}
+
+void BuffedPlayer::changeGold(int goldNum) {
+    gold += goldNum;
+}
+
+int BuffedPlayer::getGold() {
+    return gold;
+}
 

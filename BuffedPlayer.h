@@ -15,4 +15,6 @@ public:
     virtual void moveDecision(std::string behaviour);
     virtual void enemyIsKilled();
     virtual void endOfTurn();
+    void changeGold(int goldNum);
+    int getGold();
 };

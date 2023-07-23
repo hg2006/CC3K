@@ -20,9 +20,19 @@ void Merchant::moveDecision() {
                 return;
             }
         }
-        // random to decide where the enemy is gonna go to
-        row += std::rand() % 3 - 1;
-        col += std::rand() % 3 - 1;
+    }
+    // random to decide where the enemy is gonna go to
+    int var = std::rand() % 8;
+    if (ct[i] == ROOM) {
+        if (i < 3) {
+            --row;
+            col = col - 1 + i;
+        } else if (i > 4) {
+            ++row;
+            col = col - 1 + (i + 1) % 3;
+        } else {
+            col = col - 1 + 2 * (i % 3);
+        }
     }
 }
 

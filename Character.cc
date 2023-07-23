@@ -1,8 +1,9 @@
 #include "Character.h"
+#include "Object.h"
 #include "cc3klib.h"
 
 Character::Character(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def) : 
-    row{row}, col{col}, map{map}, nameNotion{nameNotion}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
+    Object{row, col}, map{map}, nameNotion{nameNotion}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
 {}
 
 Character::~Character(delete map);

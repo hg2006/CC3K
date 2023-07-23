@@ -7,13 +7,15 @@
 struct Game {
   private:
     int level;
-    unique_ptr <BuffedPlayer> player;
-    vector <unique_ptr <Map> > maps;
+    const int row = 25;
+    const int col = 79;
+    std::unique_ptr <BuffedPlayer> player;
+    std::vector <std::unique_ptr <Map> > maps;
   public:
-    Game();
+    Game(std::string nameNotion = "Shade", int currentHP = 125, int maxHP = 125, int Atk = 25, int Def = 25, int gold = 0);
     void UpdateGame ();
     void LevelUp ();
-    string Render ();
+    void Render ();
     void Restart ();
     void GameOver ();
     void ScoreBoard ();

@@ -34,7 +34,8 @@ public:
     CellType *Getviews(int row, int col) const;
     void GenerateObject(int row, int col, MapItemType type);
     void Attach(int row, int col, GameObject* obj); // attach a Gameobj to a specific cell
-    void Detach(int row, int col);                  // detach a Gameobj from a specific cell  
+    void Detach(int row, int col);                  // detach a Gameobj from a specific cell 
+    int index_convert(int row, int col) const;
 };
 
 

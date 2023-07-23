@@ -114,7 +114,7 @@ Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
     // Line 15
     tiles.emplace_back (make_unique <VerticalWall>());
     tiles.emplace_back (make_unique <Blank>());
-    this->genChmWall(1);
+    this->genChmWall();
     this->genPassage2();
     for (int i = 0; i < 5; ++i){
       tiles.emplace_back (make_unique <Blank>());
@@ -247,65 +247,63 @@ vector<CellType> Map:: Getviews(int row, int col) const{
 
 
 void Map:: GenerateObject(int row, int col, MapItemType type){
-        GameObject *newobj = nullptr;
-        switch (type){
-            case HUMAN:
-                newobj = new Human{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-        
-            case DWARF:
-                newobj = new Dwarf{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case ELF:
-                newobj = new Elf{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case ORCS:
-                newobj = new Orc{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case MERCHANT:
-                newobj = new Merchant{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case DRAGON:
-                newobj = new Dragon{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case HALFLING:
-                newobj = new Halfling{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case SMALLGOLD:
-                newobj = new SmallGold{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case NORMALGOLD:
-                newobj = new NormalGold{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case MERCHANTHOARD:
-                newobj = new MerchantHoard{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case DRAGONHOARD:
-                newobj = new DragonHoard{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-        }
+        // switch (type){
+        //     case HUMAN:
+        //         GameObject *newobj = new Human{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case DWARF:
+        //         GameObject *newobj = new Dwarf{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case ELF:
+        //         GameObject *newobj = new Elf{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case ORCS:
+        //         GameObject *newobj = new Orc{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case MERCHANT:
+        //         GameObject *newobj = new Merchant{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case DRAGON:
+        //         GameObject *newobj = new Dragon{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case HALFLING:
+        //         GameObject *newobj = new Halfling{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case SMALLGOLD:
+        //         GameObject *newobj = new Smallgold{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case NORMALGOLD:
+        //         GameObject *newobj = new Normalgold{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case MERCHANTHOARD:
+        //         GameObject *newobj = new MerchantHoard{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+        //     case DRAGONHOARD:
+        //         GameObject *newobj = new DragonHoard{row, col};
+        //         objects.emplace_back(newobj);
+        //         this->Attach(row, col, newobj);
+        //         break;
+            
             // To be further implemented since ctor required    
             // case BA:
             // case BD:
@@ -445,10 +443,10 @@ void Map::genGap3(){
   tiles.emplace_back (make_unique <VerticalWall>());
 }
 
-void Map::genChmWall(int offset){
+void Map::genChmWall(){
   tiles.emplace_back (make_unique <Blank>());
   tiles.emplace_back (make_unique <VerticalWall>());
-  for (int i = 0; i < 10-offset; ++i){
+  for (int i = 0; i < 10; ++i){
     tiles.emplace_back (make_unique <HorizontalWall>());
   }
   tiles.emplace_back (make_unique <Door>());
@@ -780,7 +778,7 @@ void Map::InsertBoth(vector <int> &chamber, int row, int col){
     int ctr = 0;
     for (auto type : adjacent){
         if (ctr != 4 && type == ROOM){
-            available.emplace_back((row+ctr/3-1)*79+col+ctr%3-1);
+            available.emplace_back((row+ctr/3-1)*79+col+ctr%3);
         }
         ctr += 1;
     }

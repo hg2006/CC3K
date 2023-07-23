@@ -29,8 +29,7 @@ public:
     void InitializeMap();
     void RenderMap() const;
     void UpdateMap();
-
-    void t();
+    BuffedPlayer *GetPlayer(){return player;}
 
     void InsertChamber(std::vector < std::vector <int> > &chambers, int index, MapItemType type);
     void InsertDragonHoard(std::vector < std::vector <int> > &chambers, int index);
@@ -45,7 +44,7 @@ public:
     void genChamber3();
     void genGap2();
     void genGap3();
-    void genChmWall();
+    void genChmWall(int offset = 0);
     void genChmWall2();
     void genChmWall3();
     void genChmWall4(int extend = 0);

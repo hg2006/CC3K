@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <random>
 #include <memory>
+#include <ctime>
 
 class Game;
 class GameObject;

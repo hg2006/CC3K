@@ -5,7 +5,7 @@
 class GameObject{
 public:
     GameObject* GetObject(){return this;}
-    MapItemType GetType(){return HUMAN;}
+    virtual MapItemType GetType() = 0;
     CellType GetCellType(){return OBSTACLE;}
     void update(){}
 };

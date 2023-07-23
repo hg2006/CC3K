@@ -10,6 +10,8 @@
 #include <map>
 #include <vector>
 #include <compare>
+#include <algorithm>
+#include <random>
 
 class Game;
 class GameObject;

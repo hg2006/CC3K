@@ -26,6 +26,7 @@ public:
     
     Map(BuffedPlayer *p);
     ~Map();
+    BuffedPlayer* GetPlayer(){return player;}
     void InitializeMap();
     void RenderMap() const;
     void UpdateMap();

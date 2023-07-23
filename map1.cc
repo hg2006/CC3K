@@ -57,10 +57,10 @@ Map::Map (BuffedPlayer* p): tiles { vector < unique_ptr <Cell> > {} }, player {p
     // Line 9
     this->genPassage1();
     for (int i = 0; i < 12; ++i){
-      tiles.emplace_back (make_unique <Blank>());
+      tiles.emplace_back (make_unique <Passage>());
     }
     for (int i = 0; i < 16; ++i){
-      tiles.emplace_back (make_unique <HorizontalWall>());
+      tiles.emplace_back (make_unique <Blank>());
     }
     tiles.emplace_back (make_unique <VerticalWall>());
     this->genChamber2Bottom();

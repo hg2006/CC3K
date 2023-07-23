@@ -5,9 +5,9 @@
 #include "Cell.h"
 
 class Blank: public Cell{
-
-    Blank(){};
-    ~Blank(){};
+public:
+    Blank(){}
+    ~Blank(){}
     char Render() const override;
     CellType GetType() const override;
 };

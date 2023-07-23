@@ -5,9 +5,9 @@
 #include "Cell.h"
 
 class Room: public Cell{
-
-    Room(){};
-    ~Room(){};
+public:
+    Room(){}
+    ~Room(){}
     char Render() const override;
     CellType GetType() const override;
 };

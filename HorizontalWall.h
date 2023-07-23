@@ -5,9 +5,9 @@
 #include "Cell.h"
 
 class HorizontalWall: public Cell{
-
-    HorizontalWall(){};
-    ~HorizontalWall(){};
+public:
+    HorizontalWall(){}
+    ~HorizontalWall(){}
     char Render() const override;
     CellType GetType() const override;
 };

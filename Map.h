@@ -30,6 +30,8 @@ public:
     void RenderMap() const;
     void UpdateMap();
 
+    void t();
+
     void InsertChamber(std::vector < std::vector <int> > &chambers, int index, MapItemType type);
     void InsertDragonHoard(std::vector < std::vector <int> > &chambers, int index);
     void InsertBoth(std::vector <int> &chamber, int row, int col);

@@ -60,23 +60,137 @@ void Map:: InitializeMap(){
     shuffle(chamber5.begin(), chamber5.end(), rd);
     vector < vector <int> > chambers {chamber1, chamber2, chamber3, chamber4, chamber5};
 
-
+    // generate player coordinate
+    // ***TODO: Door?
     vector <int> chambernum {0, 1, 2, 3, 4};
     shuffle(chambernum.begin(), chambernum.end(), rd);
-    int playerchamber = chambernum.back();
+    int playerindex = chambernum.back();
+    vector <int> & playerchamber = chambers.at(playerindex);
+    int coord = playerchamber.back();
+    this->player->row = coord/howmanycol;
+    this->player->col = coord%howmanycol;
+    playerchamber.pop_back();
+    
+    // generate stair
     chambernum.pop_back();
     int stairchamber = chambernum.back();
-    // potion + gold + enemy
+    this->InsertChamber(chambers, stairchamber, ASTAIR);
 
+    srand (time(NULL));
 
+    // generate potions
+    for (int i = 0; i < 10; ++i){
+        int potionchamber = rand()%5;
+        MapItemType ptype;
+        swich (rand()%6){
+            case 0: ptype = BA;
+            case 1: ptype = BD;
+            case 2: ptype = WA;
+            case 3: ptype = WD;
+            case 4: ptype = RH;
+            case 5: ptype = PH;
+        }
+        this->InsertChamber(chambers, potionchamber, ptype);
+    }
+
+    // generate golds
+    for (int i = 0; i < 10; ++i){
+        int goldchamber = rand()%5;
+        int type = rand()%8;
+        if (!type){ // dragon hoard
+            try {
+                this->InsertDragonHoard(chambers, goldchamber);
+            }
+            catch (int x){
+                int newindex = (x + rand()%4 + 1) % 5;
+                this->InsertDragonHoard(chambers, newindex);
+            }
+        }
+        else if (type == 1 || type == 2){
+            this->InsertChamber(chambers, goldchamber, SMALLGOLD);
+        }
+        else{
+            this->InsertChamber(chambers, goldchamber, NORMALGOLD);
+        }
+    }
+
+    // generate enemies
+    for (int i = 0; i < 20; ++i){
+        int enemychamber = rand()%5;
+        int type = rand()%18;
+        MapItemType etype;
+        if (type >= 0 && type <= 3){
+            etype = HUMAN;
+        }
+        else if (type >= 4 && type <= 6){
+            etype = DWARF;
+        }
+        else if (type >= 7 && type <= 11){
+            etype = HALFLING;
+        }
+        else if (type >= 12 && type <= 13){
+            etype = ELF;
+        }
+        else if (type >= 14 && type <= 15){
+            etype = ORCS;
+        }
+        else{
+            etype = MERCHANT;
+        }
+        try {
+            this->InsertChamber(chambers, enemychamber, etype);
+        }
+        catch (int x){
+            int newindex = (x + rand()%4 + 1) % 5;
+            this->InsertChamber(chambers, newindex, etype);
+        }
+    }
 }
 
 void Map::InsertChamber(vector < vector <int> > &chambers, int index, MapItemType type){
     vector <int> & chamber = chambers.at(index);
-    if (chamber.empty()) { throw index; } // no more space in this chamber
-    
+    if (chamber.empty()) { throw index; } 
+    // no more space in this chamber, only considered at enemy generation
+    int coord = chamber.back();
+    this->GenerateObject(coord/howmanycol, coord%howmanycol, type);
+    chamber.pop_back();
 }
 
+void Map::InsertDragonHoard(vector < vector <int> > &chambers, int index){
+    vector <int> & chamber = chambers.at(index);
+    int x = 0;
+    for (auto coord:chamber){
+        try{
+            InsertBoth(chamber, coord/howmanycol, corrd%howmanycol);
+            chamber.erase(find(chamber.begin(), chamber.end(), coord));
+            x = 1;
+            break;
+        }
+        catch (...){ 
+            // invalid coordination, does nothing, goes to next iteration
+        }
+    }
+    if (!x) { throw x }; // chamber is invalid
+}
+
+void Map::InsertBoth(vector <int> &chamber, int row, int col){
+    vector <CellType> adjacent = Getviews (row, col);
+    vector <int> available;
+    int ctr = 0;
+    for (auto type : adjacent){
+        if (ctr != 4 && type == ROOM){
+            available.emplace_back((row+ctr/3)*79+col+ctr%3);
+        }
+        ctr += 1;
+    }
+    if (available.empty()) { throw 1; }
+    random_device rd;
+    shuffle(available.begin(), available.end(), rd);
+    int coord = available.back();
+    this->GenerateObject(row, col, DRAGONHOARD);
+    this->GenerateObject(coord/howmanycol, coord%howmanycol, DRAGON);
+    chamber.erase(find(chamber.begin(), chamber.end(), coord));
+}
 
 // @ for player
 // E for all enemies

@@ -48,6 +48,9 @@ class Map{
     void genPassage3 (int choice = 0);
     void genChamber5Bottom(int choice = 0);
 
+    void InsertChamber(vector < vector <int> > &chambers, int index, MapItemType type);
+    void InsertDragonHoard(vector < vector <int> > &chambers, int index);
+    void InsertBoth(vector <int> &chamber, int row, int col);
 
 public:
     friend class Game;

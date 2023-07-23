@@ -14,7 +14,7 @@ protected:
     virtual char Render() const = 0;
     virtual CellType GetType() const = 0;
     GameObject* GetObject() const;
-    void Cell:: SetObject(GameObject* obj);
+    void SetObject(GameObject* obj);
     void Attach(GameObject* obj);
     void Detach();
 };

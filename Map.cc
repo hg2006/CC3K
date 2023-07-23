@@ -19,7 +19,7 @@ void Map:: RenderMap() const{
     int cur_col = 0;
     int cur_row = 0;
     
-    BuffedPlayer *player  = this->player;
+    BuffedPlayer *player = this->player;
     int Player_x = player->Getx();
     int Player_y = player->Gety(); /*Getx and Gety funcion required*/
 

@@ -11,20 +11,12 @@ void Enemy::deadNotify() {
 }
 
 void Enemy::attackNotify() {
-    CellType *ct = detect();
-    int tmpRow;
-    int tmpCol;
-    for (int i = 0; i < 8; ++i) {
-        if (ct[i] == PLAYER) {
-            // random to decide whether the attack success here
-            int var = std::rand() % 2;
-            if (var == 1) {
-                map->GetPlayer()->attacked(atk);
-            } else {
-                // still wait to decide what will happen if the attack missed
-            }
-            break;
-        }
+    // random to decide whether the attack success here
+    int var = std::rand() % 2;
+    if (var == 1) {
+        map->GetPlayer()->attacked(atk);
+    } else {
+        // still wait to decide what will happen if the attack missed
     }
 }
 

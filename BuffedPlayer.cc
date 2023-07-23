@@ -1,8 +1,8 @@
 #include "BuffedPlayer.h"
 #include "cc3klib.h"
 
-BuffedPlayer::BuffedPlayer(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def) :
-    Character{row, col, map, nameNotion, currentHP, maxHP, atk, def} {}
+BuffedPlayer::BuffedPlayer(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def, int gold) :
+    Character{row, col, map, nameNotion, currentHP, maxHP, atk, def}, gold {gold} {}
 
 BuffedPlayer::~BuffedPlayer() {}
 

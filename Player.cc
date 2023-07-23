@@ -2,7 +2,7 @@
 #include "cc3klib.h"
 
 Player::Player(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def, int gold) :
-    BuffedPlayer{row, col, map, nameNotion, currentHP, maxHP, atk, def}, gold{gold} {}
+    BuffedPlayer{row, col, map, nameNotion, currentHP, maxHP, atk, def, gold} {}
 
 Player::~Player();
 

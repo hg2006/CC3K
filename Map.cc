@@ -57,10 +57,10 @@ Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
     // Line 9
     this->genPassage1();
     for (int i = 0; i < 12; ++i){
-      tiles.emplace_back (make_unique <Blank>());
+      tiles.emplace_back (make_unique <Passage>());
     }
     for (int i = 0; i < 16; ++i){
-      tiles.emplace_back (make_unique <HorizontalWall>());
+      tiles.emplace_back (make_unique <Blank>());
     }
     tiles.emplace_back (make_unique <VerticalWall>());
     this->genChamber2Bottom();
@@ -110,18 +110,16 @@ Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
     for (int i = 0; i < 5; ++i){
       tiles.emplace_back (make_unique <Blank>());
     }
-    tiles.emplace_back (make_unique <VerticalWall>());
     this->genChmWall4(4);
     // Line 15
     tiles.emplace_back (make_unique <VerticalWall>());
     tiles.emplace_back (make_unique <Blank>());
-    this->genChmWall();
+    this->genChmWall(1);
     this->genPassage2();
-    tiles.emplace_back (make_unique <VerticalWall>());
     for (int i = 0; i < 5; ++i){
       tiles.emplace_back (make_unique <Blank>());
     }
-    tiles.emplace_back (make_unique <Door>());
+    tiles.emplace_back (make_unique <Passage>());
     for (int i = 0; i < 8; ++i){
       tiles.emplace_back (make_unique <Blank>());
     }
@@ -129,7 +127,6 @@ Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
     // Line 16
     this->genChamber4();
     this->genPassage2();
-    tiles.emplace_back (make_unique <VerticalWall>());
     this->genChmWall4();
     // Line 17
     this->genChamber4();
@@ -446,10 +443,10 @@ void Map::genGap3(){
   tiles.emplace_back (make_unique <VerticalWall>());
 }
 
-void Map::genChmWall(){
+void Map::genChmWall(int offset){
   tiles.emplace_back (make_unique <Blank>());
   tiles.emplace_back (make_unique <VerticalWall>());
-  for (int i = 0; i < 10; ++i){
+  for (int i = 0; i < 10-offset; ++i){
     tiles.emplace_back (make_unique <HorizontalWall>());
   }
   tiles.emplace_back (make_unique <Door>());

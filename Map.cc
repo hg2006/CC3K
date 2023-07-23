@@ -605,31 +605,31 @@ void Map::genChamber5Bottom(int choice) {
 void Map:: InitializeMap(){
     // initialize shuffled chambers using hard coding
     vector <int> chamber1;
-    for (int i = 240; i < 267; ++i){
+    for (int i = 240; i < 266; ++i){
         for (int j = 0; j < 4; ++j){
             chamber1.emplace_back(i+j*howmanycol);
         }
     }
     vector <int> chamber2;
-    for (int i = 277; i < 300; ++i){
+    for (int i = 276; i < 299; ++i){
         for (int j = 0; j < 4; ++j){
             chamber2.emplace_back(i+j*howmanycol);
         }
     }
-    for (int i = 458; i < 466; ++i){
+    for (int i = 457; i < 465; ++i){
         chamber2.emplace_back(i);
         chamber2.emplace_back(i+howmanycol);
     }
+    chamber2.emplace_back(544);
     chamber2.emplace_back(545);
     chamber2.emplace_back(546);
-    chamber2.emplace_back(547);
-    for (int i = 615; i < 630; ++i){
+    for (int i = 614; i < 629; ++i){
         for (int j = 0; j < 6; ++j){
             chamber2.emplace_back(i+j*howmanycol);
         }
     }
     vector <int> chamber3;
-    for (int i = 829; i < 841; ++i){
+    for (int i = 828; i < 840; ++i){
         for (int j = 0; j < 3; ++j){
             chamber3.emplace_back(i+j*howmanycol);
         }
@@ -641,12 +641,12 @@ void Map:: InitializeMap(){
         }
     }
     vector <int> chamber5;
-    for (int i = 1539; i < 1578; ++i){
+    for (int i = 1538; i < 1577; ++i){
         for (int j = 0; j < 3; ++j){
             chamber5.emplace_back(i+j*howmanycol);
         }
     }
-    for (int i = 1488; i < 1499; ++i){
+    for (int i = 1487; i < 1498; ++i){
         for (int j = 0; j < 3; ++j){
             chamber5.emplace_back(i-j*howmanycol);
         }

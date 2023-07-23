@@ -2,14 +2,12 @@
 using namespace std;
 
 void Map::t(){
-  vector <int> chamber1;
     for (int i = 240; i < 267; ++i){
         for (int j = 0; j < 4; ++j){
           int coord =i+j*howmanycol;
           GenerateObject(coord/howmanycol, coord/howmanycol, HUMAN);
         }
     }
-    vector <int> chamber2;
     for (int i = 277; i < 300; ++i){
         for (int j = 0; j < 4; ++j){
           int coord =i+j*howmanycol;
@@ -30,21 +28,18 @@ void Map::t(){
             GenerateObject(coord/howmanycol, coord/howmanycol, HUMAN);
         }
     }
-    vector <int> chamber3;
     for (int i = 829; i < 841; ++i){
         for (int j = 0; j < 3; ++j){
             int coord =i+j*howmanycol;
             GenerateObject(coord/howmanycol, coord/howmanycol, HUMAN);
         }
     }
-    vector <int> chamber4;
     for (int i = 1189; i < 1210; ++i){
         for (int j = 0; j < 7; ++j){
             int coord =i+j*howmanycol;
             GenerateObject(coord/howmanycol, coord/howmanycol, HUMAN);
         }
     }
-    vector <int> chamber5;
     for (int i = 1539; i < 1578; ++i){
         for (int j = 0; j < 3; ++j){
             int coord =i+j*howmanycol;

@@ -6,9 +6,9 @@
 
 class Blank: public Cell{
 
-    Blank();
-    ~Blank();
-    void Render() const override;
+    Blank(){};
+    ~Blank(){};
+    char Render() const override;
     CellType GetType() const override;
 };
 

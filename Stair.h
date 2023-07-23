@@ -6,9 +6,9 @@
 
 class Stair: public Cell{
 
-    Stair();
-    ~Stair();
-    void Render() const override;
+    Stair(){};
+    ~Stair(){};
+    char Render() const override;
     CellType GetType() const override;
 };
 

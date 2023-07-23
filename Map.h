@@ -8,15 +8,20 @@
 #include "Passage.h"
 #include "Door.h"
 #include "Blank.h"
-#include "Wall.h"
 #include "VerticalWall.h"
 #include "HorizontalWall.h"
 #include "Stair.h"
 
+class BuffedPlayer;
+
 
 class Map{
-    vector < unique_ptr<Cell> > tiles;   // A vector of 1975 elements
-
+    std::vector < std::unique_ptr<Cell>> tiles;   // A vector of 1975 elements
+    std::vector <std::unique_ptr<GameObject>> objects;
+    BuffedPlayer *player;
+    const int howmanyrow = 25;
+    const int howmanycol = 79;
+    
     Map();
     ~Map();
     void InitializeMap();
@@ -25,8 +30,9 @@ class Map{
 
 public:
     friend class Game;
-    GameObject* GetObject(int row, int col);
-    CellType Getviews(int row, int col);
+    GameObject* GetObject(int row, int col) const;
+    CellType *Getviews(int row, int col) const;
+    void GenerateObject(int row, int col, MapItemType type);
     void Attach(int row, int col, GameObject* obj); // attach a Gameobj to a specific cell
     void Detach(int row, int col);                  // detach a Gameobj from a specific cell  
 };

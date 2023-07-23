@@ -6,9 +6,9 @@
 
 class Passage: public Cell{
 
-    Passage();
-    ~Passage();
-    void Render() const override;
+    Passage(){};
+    ~Passage(){};
+    char Render() const override;
     CellType GetType() const override;
 };
 

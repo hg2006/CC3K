@@ -3,13 +3,12 @@
 
 #include "cc3klib.h"
 #include "Cell.h"
-#include "Wall.h"
 
-class VerticalWall: public Wall{
+class VerticalWall: public Cell{
 
-    VerticalWall();
-    ~VerticalWall();
-    void Render() const override;
+    VerticalWall(){};
+    ~VerticalWall(){};
+    char Render() const override;
     CellType GetType() const override;
 
 };

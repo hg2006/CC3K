@@ -6,9 +6,9 @@
 
 class Door: public Cell{
 
-    Door();
-    ~Door();
-    void Render() const override;
+    Door(){};
+    ~Door(){};
+    char Render() const override;
     CellType GetType() const override;
 };
 

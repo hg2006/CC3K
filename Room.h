@@ -6,9 +6,9 @@
 
 class Room: public Cell{
 
-    Room();
-    ~Room();
-    void Render() const override;
+    Room(){};
+    ~Room(){};
+    char Render() const override;
     CellType GetType() const override;
 };
 

@@ -5,7 +5,7 @@
 #include "Cell.h"
 
 class Stair: public Cell{
-
+public:
     Stair(){};
     ~Stair(){};
     char Render() const override;

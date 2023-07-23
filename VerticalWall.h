@@ -5,9 +5,9 @@
 #include "Cell.h"
 
 class VerticalWall: public Cell{
-
-    VerticalWall(){};
-    ~VerticalWall(){};
+public:
+    VerticalWall(){}
+    ~VerticalWall(){}
     char Render() const override;
     CellType GetType() const override;
 

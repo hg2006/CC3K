@@ -11,7 +11,7 @@ Character::Character(int row, int col, Map *map, MapItemType type, int currentHP
 Character::~Character() {}
 
 void Character::deadNotify() {
-    map->Detach(row, col); 
+    detach();
 }
 
 void Character::attackNotify() {} // this behaviour is purely virtual

@@ -1,13 +1,13 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def) :
-    Character{row, col, map, nameNotion, currentHP, maxHP, atk, def} {}
+Enemy::Enemy(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
+    Character{row, col, map, type, currentHP, maxHP, atk, def} {}
 
 Enemy::~Enemy() {}
 
 void Enemy::deadNotify() {
     map->GetPlayer()->enemyIsKilled();
-    map->detach(row, col);
+    detach();
 }
 
 void Enemy::attackNotify() {
@@ -22,14 +22,19 @@ void Enemy::attackNotify() {
 
 void Enemy::moveDecision() {
     CellType *ct = detect();
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < 9; ++i) {
         if (ct[i] == PLAYER) {
             attackNotify();
             return;
         }
     }
 
-    int var = std::rand() % 8;
+    int i = std::rand() % 9;
+    while (ct[i] != ROOM || i == 4)
+    {
+        i = std::rand() % 9;
+    }
+    
     if (ct[i] == ROOM) {
         if (i < 3) {
             --row;

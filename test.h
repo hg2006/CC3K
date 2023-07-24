@@ -15,8 +15,8 @@ public:
     BuffedPlayer(): col{0}, row{0} {}
     int col;
     int row;
-    int Getx(){return 0;}
-    int Gety(){return 0;}
+    int GetRow(){return 0;}
+    int GetCol(){return 0;}
 };
 
 class Human: public GameObject{

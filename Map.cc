@@ -190,8 +190,8 @@ void Map:: RenderMap() const{
     int cur_row = 0;
     
     BuffedPlayer *player = this->player;
-    int Player_x = player->Getx();
-    int Player_y = player->Gety(); /*Getx and Gety funcion required*/
+    int Player_x = player->GetCol();
+    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
 
     for(auto &s:tiles){
         if(cur_col == howmanycol){
@@ -202,7 +202,7 @@ void Map:: RenderMap() const{
 
         // If Player is located here
         //if(cur_col == Player_x && cur_row == Player_y )cout << '@';
-        cout << s->Render1();
+        cout << s->Render();
 
         cur_col++;
     }
@@ -212,10 +212,10 @@ GameObject* Map:: GetObject(int row, int col) const{
     (tiles.at(row * howmanycol + col))->GetObject();
 }
 
-vector<CellType> Map:: Getviews(int row, int col) const{
+vector<CellType> Map:: GetViews(int row, int col) const{
     BuffedPlayer *player = this->player;
-    int Player_x = player->Getx();
-    int Player_y = player->Gety(); /*Getx and Gety funcion required*/
+    int Player_x = player->GetCol();
+    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
     int dist_x = Player_x - row;
     int dist_y = Player_y - col;
 
@@ -774,7 +774,7 @@ void Map::InsertDragonHoard(vector < vector <int> > &chambers, int index){
 }
 
 void Map::InsertBoth(vector <int> &chamber, int row, int col){
-    vector <CellType> adjacent = Getviews (row, col);
+    vector <CellType> adjacent = GetViews (row, col);
     vector <int> available;
     int ctr = 0;
     for (auto type : adjacent){

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "cc3klib.h"
 #include "Map.h"
+#include <vector>
 
 Player::Player(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
     BuffedPlayer{row, col, map, type, currentHP, maxHP, atk, def, gold} {}
@@ -17,7 +18,7 @@ void Player::takePotion(const PotionType potion) {
 }
 
 void Player::attackNotify(const std::string direction) {
-    CellType *ct = detect();
+    vector<CellType> ct = detect();
     if (direction == "nw") {
         if (ct[0] == ENEMY) {
             map->GetObject(row - 1, col - 1)->attacked(atk);

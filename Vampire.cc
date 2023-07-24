@@ -1,6 +1,7 @@
 #include "Vampire.h"
 #include "cc3klib.h"
 #include "GameObject.h"
+#include <vector>
 
 Vampire::Vampire(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
     Player{row, col, map, type, currentHP, maxHP, atk, def, gold} {}
@@ -18,7 +19,7 @@ void Vampire::changeHP(const int HP) {
 }
 
 void Vampire::attackNotify(std::string direction) {
-    CellType *ct = detect();
+    vector<CellType> ct = detect();
     GameObject *obj = nullptr;
     if (direction == "nw") {
         if (ct[0] == ENEMY) {

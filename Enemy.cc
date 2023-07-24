@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include <vector>
 
 Enemy::Enemy(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
     Character{row, col, map, type, currentHP, maxHP, atk, def} {}
@@ -21,7 +22,7 @@ void Enemy::attackNotify() {
 }
 
 void Enemy::moveDecision() {
-    CellType *ct = detect();
+    vector<CellType> ct = detect();
     for (int i = 0; i < 9; ++i) {
         if (ct[i] == PLAYER) {
             attackNotify();

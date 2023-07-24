@@ -2,6 +2,7 @@
 #include "cc3klib.h"
 #include "Map.h"
 #include "Character.h"
+#include <vector>
 
 BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
     Character{row, col, map, type, currentHP, maxHP, atk, def}, gold {gold} {}
@@ -17,7 +18,7 @@ int BuffedPlayer::getDef() const {}
 void BuffedPlayer::attackNotify(const std::string direction) {}
 
 void BuffedPlayer::moveDecision(std::string behaviour) {
-    CellType *ct = detect();
+    vector<CellType> ct = detect();
     if (behaviour == "nw") {
         if (ct[0] == ROOM || ct[0] == PASSAGE || ct[0] == DOOR || ct[0] == STAIR) {
             --col;

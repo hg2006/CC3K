@@ -1,5 +1,6 @@
 #include "Merchant.h"
 #include <cmath>
+#include <vector>
 
 Merchant::Merchant(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
 Enemy{row, col, map, type, currentHP, maxHP, atk, def} {}
@@ -13,7 +14,7 @@ void Merchant::attacked(const int damage) {
 }
 
 void Merchant::moveDecision() {
-    CellType *ct = detect();
+    vector<CellType> ct = detect();
     if (hostile) {
         for (int i = 0; i < 9; ++i) {
             if (ct[i] == PLAYER) {

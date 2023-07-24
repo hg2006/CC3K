@@ -1,25 +1,23 @@
 #include "Character.h"
-#include "Object.h"
+#include "GameObject.h"
 #include "cc3klib.h"
+#include "Map.h"
+#include <cmath>
 
-Character::Character(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def) : 
-    Object{row, col}, map{map}, nameNotion{nameNotion}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
+Character::Character(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) : 
+    GameObject{row, col, map}, type{type}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
 {}
 
-Character::~Character(delete map);
-
-std::string Character::getName() {
-    return nameNotion;
-}
+Character::~Character() {}
 
 void Character::deadNotify() {
-    map->detach(row, col); 
+    map->Detach(row, col); 
 }
 
 void Character::attackNotify() {} // this behaviour is purely virtual
 
 void Character::attacked(const int damage) {
-    int deductHP = -1 * ceil((1.0 * 100 / (100 + def)) * damage);
+    int deductHP = -1 * std::ceil((1.0 * 100 / (100 + def)) * damage);
     changeHP(deductHP);
 }
 
@@ -37,4 +35,8 @@ void Character::changeHP(const int HP) {
 
 CellType* Character::detect() const {
     return map->GetViews(row, col);
+}
+
+MapItemType Character::getType() {
+    return type;
 }

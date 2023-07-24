@@ -1,8 +1,9 @@
 #include "Vampire.h"
 #include "cc3klib.h"
+#include "GameObject.h"
 
-Vampire::Vampire(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def, int gold) :
-    Player{row, col, map, nameNotion, currentHP, maxHP, atk, def, gold} {}
+Vampire::Vampire(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
+    Player{row, col, map, type, currentHP, maxHP, atk, def, gold} {}
 
 Vampire::~Vampire() {}
 
@@ -36,26 +37,26 @@ void Vampire::attackNotify(std::string direction) {
             obj = map->GetObject(row, col - 1);
         }
     } else if (direction == "ea") {
-        if (ct[4] == ENEMY) {
+        if (ct[5] == ENEMY) {
             obj = map->GetObject(row, col + 1);
         }
     } else if (direction == "sw") {
-        if (ct[5] == ENEMY) {
+        if (ct[6] == ENEMY) {
             obj= map->GetObject(row + 1, col - 1);
         }
     } else if (direction == "so") {
-        if (ct[6] == ENEMY) {
+        if (ct[7] == ENEMY) {
             obj= map->GetObject(row + 1, col);
         }
     } else if (direction == "se") {
-        if (ct[7] == ENEMY) {
+        if (ct[8] == ENEMY) {
             obj = map->GetObject(row + 1, col + 1);
         }
     }
 
     if (obj != nullptr) {
         obj->attacked(atk);
-        if (obj->getName() == "Dwarf") {
+        if (obj->getType() == DWARF) {
             changeHP(-5);
         } else {
             changeHP(5);

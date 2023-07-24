@@ -1,16 +1,18 @@
 #include "Player.h"
 #include "cc3klib.h"
+#include "Map.h"
 
-Player::Player(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def, int gold) :
-    BuffedPlayer{row, col, map, nameNotion, currentHP, maxHP, atk, def, gold} {}
+Player::Player(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
+    BuffedPlayer{row, col, map, type, currentHP, maxHP, atk, def, gold} {}
 
-Player::~Player();
+Player::~Player() {}
 
 void Player::takePotion(const PotionType potion) {
+    const int changeHPNum = 10;
     if (potion == PRH) {
-        changeHP(10);
+        changeHP(changeHPNum);
     } else if (potion == PPH) {
-        changeHP(-10);
+        changeHP(changeHPNum);
     }
 }
 
@@ -33,29 +35,29 @@ void Player::attackNotify(const std::string direction) {
             map->GetObject(row, col - 1)->attacked(atk);
         }
     } else if (direction == "ea") {
-        if (ct[4] == ENEMY) {
+        if (ct[5] == ENEMY) {
             map->GetObject(row, col + 1)->attacked(atk);
         }
     } else if (direction == "sw") {
-        if (ct[5] == ENEMY) {
+        if (ct[6] == ENEMY) {
             map->GetObject(row + 1, col - 1)->attacked(atk);
         }
     } else if (direction == "so") {
-        if (ct[6] == ENEMY) {
+        if (ct[7] == ENEMY) {
             map->GetObject(row + 1, col)->attacked(atk);
         }
     } else if (direction == "se") {
-        if (ct[7] == ENEMY) {
+        if (ct[8] == ENEMY) {
             map->GetObject(row + 1, col + 1)->attacked(atk);
         }
     }
 }
 
-int Player::getAtk() {
+int Player::getAtk() const {
     return atk;
 }
 
-int Player::getDef() {
+int Player::getDef() const {
     return def;
 }
 

@@ -1,23 +1,21 @@
 #include "cc3klib.h"
-#include "Object.h"
+#include "GameObject.h"
 
-class Character : public Object {
+class Character : public GameObject {
 protected:
-    Map *map;
-    string nameNotion;
+    MapItemType type;
     int currentHP;
     int maxHP;
     int atk;
     int def;
 public:
-    Character(int row, int col, Map *map, std::string nameNotion = "", int currentHP = 0, int maxHP = 0, int atk = 0, int def = 0);
+    Character(int row, int col, Map *map, MapItemType type, int currentHP = 0, int maxHP = 0, int atk = 0, int def = 0);
     virtual ~Character();
-    // 下面这三个暂时不确定是不是const
     void setMap(Map *map);
-    std::string getName();
     virtual void deadNotify();
     virtual void attackNotify();
     virtual void attacked(const int damage);
     void changeHP(const int HP);
-    CellType* detect() const; // expect to get an array of CellType where objects are at position [nw, no, ne, we, ea, sw, so, se]
+    CellType* detect() const;
+    MapItemType getType();
 };

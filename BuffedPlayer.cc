@@ -1,16 +1,18 @@
 #include "BuffedPlayer.h"
 #include "cc3klib.h"
+#include "Map.h"
+#include "Character.h"
 
-BuffedPlayer::BuffedPlayer(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def, int gold) :
-    Character{row, col, map, nameNotion, currentHP, maxHP, atk, def}, gold {gold} {}
+BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
+    Character{row, col, map, type, currentHP, maxHP, atk, def}, gold {gold} {}
 
 BuffedPlayer::~BuffedPlayer() {}
 
 void BuffedPlayer::takePotion(const PotionType potion) {}
 
-int BuffedPlayer::getAtk() {}
+int BuffedPlayer::getAtk() const {}
 
-int BuffedPlayer::getDef() {}
+int BuffedPlayer::getDef() const {}
 
 void BuffedPlayer::attackNotify(const std::string direction) {}
 
@@ -37,20 +39,20 @@ void BuffedPlayer::moveDecision(std::string behaviour) {
             --col;
         }
     } else if (behaviour == "ea") {
-        if (ct[4] == ROOM || ct[4] == PASSAGE || ct[4] == DOOR || ct[4] == STAIR) {
+        if (ct[5] == ROOM || ct[5] == PASSAGE || ct[5] == DOOR || ct[5] == STAIR) {
             ++col;
         }
     } else if (behaviour == "sw") {
-        if (ct[5] == ROOM || ct[5] == PASSAGE || ct[5] == DOOR || ct[5] == STAIR) {
+        if (ct[6] == ROOM || ct[6] == PASSAGE || ct[6] == DOOR || ct[6] == STAIR) {
             --col;
             ++row;
         }
     } else if (behaviour == "so") {
-        if (ct[6] == ROOM || ct[6] == PASSAGE || ct[6] == DOOR || ct[6] == STAIR) {
+        if (ct[7] == ROOM || ct[7] == PASSAGE || ct[7] == DOOR || ct[7] == STAIR) {
             ++row;
         }
     } else if (behaviour == "se") {
-        if (ct[7] == ROOM || ct[7] == PASSAGE || ct[7] == DOOR || ct[7] == STAIR) {
+        if (ct[8] == ROOM || ct[8] == PASSAGE || ct[8] == DOOR || ct[8] == STAIR) {
             ++col;
             ++row;
         }

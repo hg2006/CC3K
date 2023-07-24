@@ -1,12 +1,13 @@
 #include "cc3klib.h"
 
-class Object {
+class GameObject {
 protected:
     int row;
     int col;
+    Map *map;
 public:
-    Object(int row, int col);
-    virtual ~Object();
+    GameObject(int row, int col, Map *map);
+    virtual ~GameObject();
     int getRow();
     int getCol();
     virtual void attach();

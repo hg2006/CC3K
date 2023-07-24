@@ -1,6 +1,6 @@
 #include "Character.h"
 #include "cc3klib.h"
-
+#include "Map.h"
 
 class BuffedPlayer : public Character {
 protected:

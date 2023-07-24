@@ -1,5 +1,6 @@
 #include "cc3klib.h"
 #include "GameObject.h"
+#include <vector>
 
 class Character : public GameObject {
 protected:
@@ -16,6 +17,6 @@ public:
     virtual void attackNotify();
     virtual void attacked(const int damage);
     void changeHP(const int HP);
-    CellType* detect() const;
-    MapItemType getType();
+    std::vector<CellType> detect() const;
+    MapItemType GetType() override;
 };

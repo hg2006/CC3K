@@ -3,6 +3,7 @@
 #include "cc3klib.h"
 #include "Map.h"
 #include <cmath>
+#include <vector>
 
 Character::Character(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) : 
     GameObject{row, col, map}, type{type}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
@@ -33,10 +34,10 @@ void Character::changeHP(const int HP) {
     }
 }
 
-CellType* Character::detect() const {
+std::vector<CellType> Character::detect() const {
     return map->GetViews(row, col);
 }
 
-MapItemType Character::getType() {
+MapItemType Character::GetType() {
     return type;
 }

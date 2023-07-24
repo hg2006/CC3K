@@ -16,7 +16,7 @@ void Elf::attackNotify() {
     } else {
         // still wait to decide what will happen if the attack missed
     }
-    if (p->getType() != DROW) {
+    if (p->GetType() != DROW) {
         if (var2 == 1) {
             p->attacked(atk);
         } else {

@@ -18,7 +18,7 @@ void Player::takePotion(const PotionType potion) {
 }
 
 void Player::attackNotify(const std::string direction) {
-    vector<CellType> ct = detect();
+    std::vector<CellType> ct = this->detect();
     if (direction == "nw") {
         if (ct[0] == ENEMY) {
             map->GetObject(row - 1, col - 1)->attacked(atk);

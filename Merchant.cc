@@ -14,7 +14,7 @@ void Merchant::attacked(const int damage) {
 }
 
 void Merchant::moveDecision() {
-    vector<CellType> ct = detect();
+    std::vector<CellType> ct = detect();
     if (hostile) {
         for (int i = 0; i < 9; ++i) {
             if (ct[i] == PLAYER) {

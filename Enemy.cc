@@ -22,7 +22,7 @@ void Enemy::attackNotify() {
 }
 
 void Enemy::moveDecision() {
-    vector<CellType> ct = detect();
+    std::vector<CellType> ct = detect();
     for (int i = 0; i < 9; ++i) {
         if (ct[i] == PLAYER) {
             attackNotify();

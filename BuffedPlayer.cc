@@ -18,14 +18,15 @@ int BuffedPlayer::getDef() const {}
 void BuffedPlayer::attackNotify(const std::string direction) {}
 
 void BuffedPlayer::moveDecision(std::string behaviour) {
-    vector<CellType> ct = detect();
+    std::vector<CellType> ct = detect();
     if (behaviour == "nw") {
         if (ct[0] == ROOM || ct[0] == PASSAGE || ct[0] == DOOR || ct[0] == STAIR) {
             --col;
             --row;
-        } else if (ct[0] == TREASURE) {
-            map->GetObject(col - 1, row - 1)->Consume(); // ??? depends on the implementation of consume in treasure
-        }
+        } 
+        // else if (ct[0] == TREASURE) {
+        //     map->GetObject(col - 1, row - 1)->Consume(); // ??? depends on the implementation of consume in treasure
+        // }
     } else if (behaviour == "no") {
         if (ct[1] == ROOM || ct[1] == PASSAGE || ct[1] == DOOR || ct[1] == STAIR) {
             --row;

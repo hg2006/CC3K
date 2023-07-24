@@ -19,7 +19,7 @@ void Vampire::changeHP(const int HP) {
 }
 
 void Vampire::attackNotify(std::string direction) {
-    vector<CellType> ct = detect();
+    std::vector<CellType> ct = detect();
     GameObject *obj = nullptr;
     if (direction == "nw") {
         if (ct[0] == ENEMY) {
@@ -57,7 +57,7 @@ void Vampire::attackNotify(std::string direction) {
 
     if (obj != nullptr) {
         obj->attacked(atk);
-        if (obj->getType() == DWARF) {
+        if (obj->GetType() == DWARF) {
             changeHP(-5);
         } else {
             changeHP(5);

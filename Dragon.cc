@@ -14,7 +14,7 @@ void Dragon::deadNotify() {
 }
 
 void Dragon::moveDecision() {
-    vector<CellType> ct = detect();
+    std::vector<CellType> ct = detect();
     for (int i = 0; i < 9; ++i) {
         if (ct[i] == PLAYER) {
             attackNotify();

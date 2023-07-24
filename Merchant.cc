@@ -1,28 +1,34 @@
 #include "Merchant.h"
+#include <cmath>
 
-Merchant::Merchant(int row, int col, Map *map, std::string nameNotion, int currentHP, int maxHP, int atk, int def) :
-Enemy{row, col, map, nameNotion, currentHP, maxHP, atk, def} {}
+Merchant::Merchant(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
+Enemy{row, col, map, type, currentHP, maxHP, atk, def} {}
 
 Merchant::~Merchant() {}
 
 void Merchant::attacked(const int damage) {
-    int deductHP = -1 * ceil((1.0 * 100 / (100 + def)) * damage);
+    int deductHP = -1 * std::ceil((1.0 * 100 / (100 + def)) * damage);
     hostile = true;
     changeHP(deductHP);
 }
 
 void Merchant::moveDecision() {
+    CellType *ct = detect();
     if (hostile) {
-        CellType *ct = detect();
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 9; ++i) {
             if (ct[i] == PLAYER) {
                 attackNotify();
                 return;
             }
         }
     }
-    // random to decide where the enemy is gonna go to
-    int var = std::rand() % 8;
+
+    int i = std::rand() % 9;
+    while (ct[i] != ROOM || i == 4)
+    {
+        i = std::rand() % 9;
+    }
+    
     if (ct[i] == ROOM) {
         if (i < 3) {
             --row;

@@ -190,8 +190,8 @@ void Map:: RenderMap() const{
     int cur_row = 0;
     
     BuffedPlayer *player = this->player;
-    int Player_x = player->GetCol();
-    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
+    int Player_x = player->Getx();
+    int Player_y = player->Gety(); /*Getx and Gety funcion required*/
 
     for(auto &s:tiles){
         if(cur_col == howmanycol){
@@ -212,10 +212,10 @@ GameObject* Map:: GetObject(int row, int col) const{
     (tiles.at(row * howmanycol + col))->GetObject();
 }
 
-vector<CellType> Map:: GetViews(int row, int col) const{
+vector<CellType> Map:: Getviews(int row, int col) const{
     BuffedPlayer *player = this->player;
-    int Player_x = player->GetCol();
-    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
+    int Player_x = player->Getx();
+    int Player_y = player->Gety(); /*Getx and Gety funcion required*/
     int dist_x = Player_x - row;
     int dist_y = Player_y - col;
 
@@ -247,60 +247,61 @@ vector<CellType> Map:: GetViews(int row, int col) const{
 
 
 void Map:: GenerateObject(int row, int col, MapItemType type){
+        GameObject *newobj = nullptr;
         switch (type){
             case HUMAN:
-                GameObject *newobj = new Human{row, col};
+                newobj = new Human{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
         
             case DWARF:
-                GameObject *newobj = new Dwarf{row, col};
+                newobj = new Dwarf{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case ELF:
-                GameObject *newobj = new Elf{row, col};
+                newobj = new Elf{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case ORCS:
-                GameObject *newobj = new Orc{row, col};
+                newobj = new Orc{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case MERCHANT:
-                GameObject *newobj = new Merchant{row, col};
+                newobj = new Merchant{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case DRAGON:
-                GameObject *newobj = new Dragon{row, col};
+                newobj = new Dragon{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case HALFLING:
-                GameObject *newobj = new Halfling{row, col};
+                newobj = new Halfling{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case SMALLGOLD:
-                GameObject *newobj = new Smallgold{row, col};
+                newobj = new SmallGold{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case NORMALGOLD:
-                GameObject *newobj = new Normalgold{row, col};
+                newobj = new NormalGold{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case MERCHANTHOARD:
-                GameObject *newobj = new MerchantHoard{row, col};
+                newobj = new MerchantHoard{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case DRAGONHOARD:
-                GameObject *newobj = new DragonHoard{row, col};
+                newobj = new DragonHoard{row, col};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
@@ -606,31 +607,31 @@ void Map::genChamber5Bottom(int choice) {
 void Map:: InitializeMap(){
     // initialize shuffled chambers using hard coding
     vector <int> chamber1;
-    for (int i = 240; i < 267; ++i){
+    for (int i = 240; i < 266; ++i){
         for (int j = 0; j < 4; ++j){
             chamber1.emplace_back(i+j*howmanycol);
         }
     }
     vector <int> chamber2;
-    for (int i = 277; i < 300; ++i){
+    for (int i = 276; i < 299; ++i){
         for (int j = 0; j < 4; ++j){
             chamber2.emplace_back(i+j*howmanycol);
         }
     }
-    for (int i = 458; i < 466; ++i){
+    for (int i = 457; i < 465; ++i){
         chamber2.emplace_back(i);
         chamber2.emplace_back(i+howmanycol);
     }
+    chamber2.emplace_back(544);
     chamber2.emplace_back(545);
     chamber2.emplace_back(546);
-    chamber2.emplace_back(547);
-    for (int i = 615; i < 630; ++i){
+    for (int i = 614; i < 629; ++i){
         for (int j = 0; j < 6; ++j){
             chamber2.emplace_back(i+j*howmanycol);
         }
     }
     vector <int> chamber3;
-    for (int i = 829; i < 841; ++i){
+    for (int i = 828; i < 840; ++i){
         for (int j = 0; j < 3; ++j){
             chamber3.emplace_back(i+j*howmanycol);
         }
@@ -642,12 +643,12 @@ void Map:: InitializeMap(){
         }
     }
     vector <int> chamber5;
-    for (int i = 1539; i < 1578; ++i){
+    for (int i = 1538; i < 1577; ++i){
         for (int j = 0; j < 3; ++j){
             chamber5.emplace_back(i+j*howmanycol);
         }
     }
-    for (int i = 1488; i < 1499; ++i){
+    for (int i = 1487; i < 1498; ++i){
         for (int j = 0; j < 3; ++j){
             chamber5.emplace_back(i-j*howmanycol);
         }
@@ -774,12 +775,12 @@ void Map::InsertDragonHoard(vector < vector <int> > &chambers, int index){
 }
 
 void Map::InsertBoth(vector <int> &chamber, int row, int col){
-    vector <CellType> adjacent = GetViews (row, col);
+    vector <CellType> adjacent = Getviews (row, col);
     vector <int> available;
     int ctr = 0;
     for (auto type : adjacent){
         if (ctr != 4 && type == ROOM){
-            available.emplace_back((row+ctr/3)*79+col+ctr%3);
+            available.emplace_back((row+ctr/3-1)*79+col+ctr%3-1);
         }
         ctr += 1;
     }
@@ -791,4 +792,3 @@ void Map::InsertBoth(vector <int> &chamber, int row, int col){
     this->GenerateObject(coord/howmanycol, coord%howmanycol, DRAGON);
     chamber.erase(find(chamber.begin(), chamber.end(), coord));
 }
-

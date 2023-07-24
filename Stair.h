@@ -5,10 +5,10 @@
 #include "Cell.h"
 
 class Stair: public Cell{
-
-    Stair();
-    ~Stair();
-    void Render() const override;
+public:
+    Stair(){};
+    ~Stair(){};
+    char Render() const override;
     CellType GetType() const override;
 };
 

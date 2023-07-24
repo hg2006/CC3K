@@ -4,18 +4,20 @@
 #include "cc3klib.h"
 
 class Cell{
-protected:
     GameObject* obj;
+protected:
 
     friend class Map;
 
     Cell();   // defaulted to be nullptr
-    virtual ~Cell();
-    virtual void Render() const = 0;
+    virtual char Render() const = 0;
     virtual CellType GetType() const = 0;
     GameObject* GetObject() const;
+    void SetObject(GameObject* obj);
     void Attach(GameObject* obj);
     void Detach();
+public:
+    virtual ~Cell();
 };
 
 #endif

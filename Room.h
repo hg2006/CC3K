@@ -5,10 +5,10 @@
 #include "Cell.h"
 
 class Room: public Cell{
-
-    Room();
-    ~Room();
-    void Render() const override;
+public:
+    Room(){}
+    ~Room(){}
+    char Render() const override;
     CellType GetType() const override;
 };
 

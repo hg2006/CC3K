@@ -5,10 +5,10 @@
 #include "Cell.h"
 
 class Passage: public Cell{
-
-    Passage();
-    ~Passage();
-    void Render() const override;
+public:
+    Passage(){}
+    ~Passage(){}
+    char Render() const override;
     CellType GetType() const override;
 };
 

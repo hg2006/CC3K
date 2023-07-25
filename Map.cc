@@ -213,7 +213,9 @@ void Map:: RenderMap() const{
 
         // If Player is located here
         if(cur_col == Player_x && cur_row == Player_y )cout << '@';
-        cout << s->Render();
+        else {
+          cout << s->Render(); 
+        }
 
         cur_col++;
     }

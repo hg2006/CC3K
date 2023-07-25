@@ -1,5 +1,10 @@
+#ifndef _DRAGON_H_
+#define _DRAGON_H_
+
 #include "Enemy.h"
-#include "DragonHoard.h"
+#include "cc3klib.h"
+//#include "DragonHoard.h"
+class DragonHoard;
 
 class Dragon : public Enemy {
     DragonHoard *hoard;
@@ -9,3 +14,5 @@ public:
     void deadNotify() override;
     void moveDecision() override;
 };
+
+#endif

@@ -1,4 +1,9 @@
+#ifndef _ORCS_H_
+#define _ORCS_H_
+
 #include "Enemy.h"
+#include "BuffedPlayer.h"
+#include "cc3klib.h"
 
 class Orcs : public Enemy {
 public:
@@ -6,3 +11,5 @@ public:
     ~Orcs();
     void attackNotify() override;
 };
+
+#endif

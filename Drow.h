@@ -1,3 +1,6 @@
+#ifndef _DROW_H_
+#define _DROW_H_
+
 #include "Player.h"
 #include "cc3klib.h"
 
@@ -7,3 +10,5 @@ public:
     ~Drow();
     void takePotion(const PotionType potion) override;
 };
+
+#endif

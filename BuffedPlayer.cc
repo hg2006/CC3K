@@ -1,8 +1,4 @@
 #include "BuffedPlayer.h"
-#include "cc3klib.h"
-#include "Map.h"
-#include "Character.h"
-#include <vector>
 
 BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
     Character{row, col, map, type, currentHP, maxHP, atk, def}, gold {gold} {}
@@ -62,6 +58,7 @@ void BuffedPlayer::moveDecision(std::string behaviour) {
 }
 
 void BuffedPlayer::enemyIsKilled() {}
+
 void BuffedPlayer::endOfTurn() {}
 
 void BuffedPlayer::changeGold(int goldNum) {

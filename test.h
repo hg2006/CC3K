@@ -17,6 +17,8 @@ public:
     int row;
     int GetRow(){return 0;}
     int GetCol(){return 0;}
+    void SetRow(int n){row = n;}
+    void SetCol(int n){col = n;}
 };
 
 class Human: public GameObject{
@@ -59,14 +61,6 @@ class Merchant: public GameObject{
     MapItemType GetType(){return MERCHANT;}
 };
 
-class Halfing: public GameObject{
-    public:
-    int x;
-    int y;
-    Halfing(int x, int y): x{x}, y{y} {}
-    MapItemType GetType(){return HALFLING;}
-};
-
 class SmallGold: public GameObject{
     public:
     int x;
@@ -98,6 +92,25 @@ class DragonHoard: public GameObject{
     DragonHoard(int x, int y): x{x}, y{y} {}
     MapItemType GetType(){return DRAGONHOARD;}
 };
+
+class Dragon: public GameObject{
+    public:
+    int x;
+    int y;
+    Dragon(int x, int y): x{x}, y{y} {}
+    MapItemType GetType(){return DRAGON;}
+};
+
+class Halfling: public GameObject{
+    public:
+    int x;
+    int y;
+    Halfling(int x, int y): x{x}, y{y} {}
+    MapItemType GetType(){return HALFLING;}
+};
+
+
+
 
 
 

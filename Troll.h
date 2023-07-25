@@ -1,3 +1,5 @@
+#ifndef _TROLL_H_
+#define _TROLL_H_
 #include "Player.h"
 #include "cc3klib.h"
 
@@ -7,3 +9,5 @@ public:
     ~Troll();
     void endOfTurn() override;
 };
+
+#endif

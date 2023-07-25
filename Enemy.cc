@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include <vector>
+#include "Map.h"
 
 Enemy::Enemy(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
     Character{row, col, map, type, currentHP, maxHP, atk, def} {}
@@ -47,4 +47,8 @@ void Enemy::moveDecision() {
             col = col - 1 + 2 * (i % 3);
         }
     }
+}
+
+CellType Enemy:: GetCellType(){
+    return ENEMY;
 }

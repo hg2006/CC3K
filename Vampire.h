@@ -1,3 +1,5 @@
+#ifndef _VAMPIER_H_
+#define _VAMPIER_H_
 #include "Player.h"
 #include "cc3klib.h"
 
@@ -8,3 +10,5 @@ public:
     void changeHP(const int HP);
     void attackNotify(std::string direction) override;
 };
+
+#endif

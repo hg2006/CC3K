@@ -1,7 +1,10 @@
-#include "cc3klib.h"
-#include "Map.h"
+#ifndef _GAMEOBJECT_H_
+#define _GAMEOBJECT_H_
 
-class GameObject {
+#include "cc3klib.h"
+class Map;
+
+class GameObject{
 protected:
     int row;
     int col;
@@ -16,6 +19,10 @@ public:
     virtual void attach();
     virtual void detach();
     GameObject* GetObject();
-    CellType GetCellType();
-    virtual MapItemType GetType();
+    virtual CellType GetCellType();
+    virtual MapItemType GetType() = 0; 
+    virtual void attacked(const int damage) = 0;
+    virtual void moveDecision(){};
 };
+
+#endif

@@ -1,9 +1,9 @@
 #include "Room.h"
-#include "test.h"
 using namespace std;
 
 char Room:: Render() const{
     GameObject* object = this->GetObject();
+    
     if(object){
         MapItemType type = object->GetType();
         switch (type){

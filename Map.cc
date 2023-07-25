@@ -134,7 +134,18 @@ Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
     this->genChamber5();
     // Line 18
     this->genChamber4();
-    this->genPassage2();
+    tiles.emplace_back (make_unique <VerticalWall>());
+    for (int i = 0; i < 5; ++i){
+      tiles.emplace_back (make_unique <Blank>());
+    }
+    tiles.emplace_back (make_unique <Passage>());
+    for (int i = 0; i < 11; ++i){
+      tiles.emplace_back (make_unique <Blank>());
+    }
+    tiles.emplace_back (make_unique <Passage>());
+    for (int i = 0; i < 20; ++i){
+      tiles.emplace_back (make_unique <Blank>());
+    }
     this->genChamber5();
     // Line 19
     this->genChamber4();
@@ -662,7 +673,6 @@ void Map:: InitializeMap(){
     vector < vector <int> > chambers {chamber1, chamber2, chamber3, chamber4, chamber5};
 
     // generate player coordinate
-    // ***TODO: Door?
     vector <int> chambernum {0, 1, 2, 3, 4};
     shuffle(chambernum.begin(), chambernum.end(), rd);
     int playerindex = chambernum.back();
@@ -702,8 +712,8 @@ void Map:: InitializeMap(){
             try {
                 this->InsertDragonHoard(chambers, goldchamber);
             }
-            catch (int x){
-                int newindex = (x + rand()%4 + 1) % 5;
+            catch (...){
+                int newindex = (goldchamber + rand()%4 + 1) % 5;
                 this->InsertDragonHoard(chambers, newindex);
             }
         }
@@ -741,11 +751,12 @@ void Map:: InitializeMap(){
         try {
             this->InsertChamber(chambers, enemychamber, etype);
         }
-        catch (int x){
-            int newindex = (x + rand()%4 + 1) % 5;
+        catch (...){
+            int newindex = (enemychamber + rand()%4 + 1) % 5;
             this->InsertChamber(chambers, newindex, etype);
         }
     }
+
 }
 
 void Map::InsertChamber(vector < vector <int> > &chambers, int index, MapItemType type){

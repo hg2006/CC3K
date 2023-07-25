@@ -3,9 +3,11 @@
 
 #include "cc3klib.h"
 #include "BuffedPlayer.h"
+#include "Map.h" // 
 
 struct Game {
   private:
+    int gameContinue = 1; // public
     int level;
     const int row = 25;
     const int col = 79;

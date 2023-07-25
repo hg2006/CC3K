@@ -15,7 +15,7 @@
 #include <memory>
 #include <ctime>
 
-class Game;
+struct Game;
 class GameObject;
 class Map;
 class Cell;

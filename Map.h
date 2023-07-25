@@ -56,7 +56,7 @@ public:
     void genChamber5Bottom(int choice = 0);
 
 public:
-    friend class Game;
+    friend struct Game;
     GameObject* GetObject(int row, int col) const;
     std::vector <CellType> Getviews(int row, int col) const;
     void GenerateObject(int row, int col, MapItemType type);

@@ -201,8 +201,8 @@ void Map:: RenderMap() const{
     int cur_row = 0;
     
     BuffedPlayer *player = this->player;
-    int Player_x = player->Getx();
-    int Player_y = player->Gety(); /*Getx and Gety funcion required*/
+    int Player_x = player->GetCol();
+    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
 
     for(auto &s:tiles){
         if(cur_col == howmanycol){
@@ -212,7 +212,7 @@ void Map:: RenderMap() const{
         }
 
         // If Player is located here
-        //if(cur_col == Player_x && cur_row == Player_y )cout << '@';
+        if(cur_col == Player_x && cur_row == Player_y )cout << '@';
         cout << s->Render();
 
         cur_col++;
@@ -220,13 +220,13 @@ void Map:: RenderMap() const{
 }
 
 GameObject* Map:: GetObject(int row, int col) const{
-    (tiles.at(row * howmanycol + col))->GetObject();
+    return (tiles.at(row * howmanycol + col))->GetObject();
 }
 
-vector<CellType> Map:: Getviews(int row, int col) const{
+vector<CellType> Map:: GetViews(int row, int col) const{
     BuffedPlayer *player = this->player;
-    int Player_x = player->Getx();
-    int Player_y = player->Gety(); /*Getx and Gety funcion required*/
+    int Player_x = player->GetCol();
+    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
     int dist_x = Player_x - row;
     int dist_y = Player_y - col;
 
@@ -259,62 +259,64 @@ vector<CellType> Map:: Getviews(int row, int col) const{
 
 void Map:: GenerateObject(int row, int col, MapItemType type){
         GameObject *newobj = nullptr;
-        switch (type){
+        switch (type) {
             case HUMAN:
-                newobj = new Human{row, col};
+                newobj = new Human{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
         
             case DWARF:
-                newobj = new Dwarf{row, col};
+                newobj = new Dwarf{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case ELF:
-                newobj = new Elf{row, col};
+                newobj = new Elf{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case ORCS:
-                newobj = new Orc{row, col};
+                newobj = new Orcs{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case MERCHANT:
-                newobj = new Merchant{row, col};
+                newobj = new Merchant{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case DRAGON:
-                newobj = new Dragon{row, col};
+                newobj = new Dragon{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
             case HALFLING:
-                newobj = new Halfling{row, col};
+                newobj = new Halfling{row, col, this};
                 objects.emplace_back(newobj);
                 this->Attach(row, col, newobj);
                 break;
-            case SMALLGOLD:
-                newobj = new SmallGold{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case NORMALGOLD:
-                newobj = new NormalGold{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case MERCHANTHOARD:
-                newobj = new MerchantHoard{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case DRAGONHOARD:
-                newobj = new DragonHoard{row, col};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
+            // case SMALLGOLD:
+            //     newobj = new SmallGold{row, col, this};
+            //     objects.emplace_back(newobj);
+            //     this->Attach(row, col, newobj);
+            //     break;
+            // case NORMALGOLD:
+            //     newobj = new NormalGold{row, col, this};
+            //     objects.emplace_back(newobj);
+            //     this->Attach(row, col, newobj);
+            //     break;
+            // case MERCHANTHOARD:
+            //     newobj = new MerchantHoard{row, col, this};
+            //     objects.emplace_back(newobj);
+            //     this->Attach(row, col, newobj);
+            //     break;
+            // case DRAGONHOARD:
+            //     newobj = new DragonHoard{row, col, this};
+            //     objects.emplace_back(newobj);
+            //     this->Attach(row, col, newobj);
+            //     break;
+              default:
                 break;
         }
             // To be further implemented since ctor required    
@@ -332,7 +334,7 @@ void Map:: UpdateMap(){
     for(auto &s:tiles){
         GameObject* obj = s->GetObject();
         if(obj){
-            obj->update();
+            obj->moveDecision();
             // Update function required
         }
     }
@@ -678,8 +680,8 @@ void Map:: InitializeMap(){
     int playerindex = chambernum.back();
     vector <int> & playerchamber = chambers.at(playerindex);
     int coord = playerchamber.back();
-    this->player->row = coord/howmanycol;
-    this->player->col = coord%howmanycol;
+    this->player->SetRow(coord/howmanycol);
+    this->player->SetCol(coord%howmanycol);
     playerchamber.pop_back();
     
     // generate stair
@@ -786,7 +788,7 @@ void Map::InsertDragonHoard(vector < vector <int> > &chambers, int index){
 }
 
 void Map::InsertBoth(vector <int> &chamber, int row, int col){
-    vector <CellType> adjacent = Getviews (row, col);
+    vector <CellType> adjacent = GetViews (row, col);
     vector <int> available;
     int ctr = 0;
     for (auto type : adjacent){
@@ -803,4 +805,3 @@ void Map::InsertBoth(vector <int> &chamber, int row, int col){
     this->GenerateObject(coord/howmanycol, coord%howmanycol, DRAGON);
     chamber.erase(find(chamber.begin(), chamber.end(), coord));
 }
-

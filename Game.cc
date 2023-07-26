@@ -44,6 +44,10 @@ void Game::LevelUp(){
   }
 }
 
+int Game::GameStatus(){
+  return gameContinue;
+}
+
 void Game::Render(){
   Map &p = *(maps.at(level-1));
   p.RenderMap();

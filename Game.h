@@ -16,6 +16,7 @@ struct Game {
     std::vector <std::unique_ptr <Map> > maps;
   public:
     Game(std::string race, MapItemType type);
+    int GameStatus ();
     void UpdateGame ();
     void LevelUp ();
     void Render ();

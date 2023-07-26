@@ -1,4 +1,8 @@
+#ifndef _GOBLIN_H_
+#define _GOBLIN_H_
+
 #include "Player.h"
+#include "cc3klib.h"
 
 class Goblin : public Player {
 public:
@@ -6,3 +10,5 @@ public:
     ~Goblin();
     void enemyIsKilled() override;
 };
+
+#endif

@@ -2,7 +2,6 @@
 #define _MAP_H_
 
 #include "cc3klib.h"
-
 #include "Cell.h"
 #include "Room.h"
 #include "Passage.h"
@@ -11,10 +10,20 @@
 #include "VerticalWall.h"
 #include "HorizontalWall.h"
 #include "Stair.h"
-#include "test.h"
-
-class BuffedPlayer;
-
+#include "BuffedPlayer.h"
+#include "Player.h"
+#include "Drow.h"
+#include "Vampire.h"
+#include "Troll.h"
+#include "Goblin.h"
+#include "Enemy.h"
+#include "Human.h"
+#include "Dwarf.h"
+#include "Elf.h"
+#include "Orcs.h"
+#include "Halfling.h"
+#include "Merchant.h"
+#include "Dragon.h"
 
 class Map{
 public:
@@ -56,9 +65,9 @@ public:
     void genChamber5Bottom(int choice = 0);
 
 public:
-    friend class Game;
+    friend struct Game;
     GameObject* GetObject(int row, int col) const;
-    std::vector <CellType> Getviews(int row, int col) const;
+    std::vector <CellType> GetViews(int row, int col) const;
     void GenerateObject(int row, int col, MapItemType type);
     void Attach(int row, int col, GameObject* obj); // attach a Gameobj to a specific cell
     void Detach(int row, int col);                  // detach a Gameobj from a specific cell 

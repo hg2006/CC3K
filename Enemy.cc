@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include <vector>
+#include "Map.h"
 
 Enemy::Enemy(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
     Character{row, col, map, type, currentHP, maxHP, atk, def} {}
@@ -9,6 +9,14 @@ Enemy::~Enemy() {}
 void Enemy::deadNotify() {
     map->GetPlayer()->enemyIsKilled();
     detach();
+}
+
+void Enemy::attacked(const int damage) {
+    int deductHP = -1 * std::ceil((1.0 * 100 / (100 + def)) * damage);
+    changeHP(deductHP);
+    if (map->GetPlayer()->GetType() == VAMPIRE) {
+        map->GetPlayer()->changeHP(5);
+    }
 }
 
 void Enemy::attackNotify() {
@@ -29,7 +37,8 @@ void Enemy::moveDecision() {
             return;
         }
     }
-
+    
+    map->Detach(row, col);
     int i = std::rand() % 9;
     while (ct[i] != ROOM || i == 4)
     {
@@ -39,12 +48,14 @@ void Enemy::moveDecision() {
     if (ct[i] == ROOM) {
         if (i < 3) {
             --row;
-            col = col - 1 + i;
-        } else if (i > 4) {
+        } else if (i > 5) {
             ++row;
-            col = col - 1 + (i + 1) % 3;
-        } else {
-            col = col - 1 + 2 * (i % 3);
         }
+        col = col - 1 + i % 3;
     }
+    map->Attach(row, col, this);
+}
+
+CellType Enemy:: GetCellType(){
+    return ENEMY;
 }

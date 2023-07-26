@@ -1,8 +1,4 @@
 #include "BuffedPlayer.h"
-#include "cc3klib.h"
-#include "Map.h"
-#include "Character.h"
-#include <vector>
 
 BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
     Character{row, col, map, type, currentHP, maxHP, atk, def}, gold {gold} {}
@@ -11,9 +7,13 @@ BuffedPlayer::~BuffedPlayer() {}
 
 void BuffedPlayer::takePotion(const PotionType potion) {}
 
-int BuffedPlayer::getAtk() const {}
+int BuffedPlayer::getAtk() const {
+    return atk;
+}
 
-int BuffedPlayer::getDef() const {}
+int BuffedPlayer::getDef() const {
+    return def;
+}
 
 void BuffedPlayer::attackNotify(const std::string direction) {}
 
@@ -62,6 +62,7 @@ void BuffedPlayer::moveDecision(std::string behaviour) {
 }
 
 void BuffedPlayer::enemyIsKilled() {}
+
 void BuffedPlayer::endOfTurn() {}
 
 void BuffedPlayer::changeGold(int goldNum) {
@@ -69,6 +70,10 @@ void BuffedPlayer::changeGold(int goldNum) {
 }
 
 int BuffedPlayer::getGold() {
+    return gold;
+}
+
+int BuffedPlayer::getScore() {
     return gold;
 }
 

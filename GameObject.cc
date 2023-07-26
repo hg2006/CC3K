@@ -32,6 +32,8 @@ void GameObject::detach() {
 
 GameObject* GameObject::GetObject(){return this;}
 
-CellType GetCellType() {return OBSTACLE;}
+CellType GameObject:: GetCellType() {return OBSTACLE;} 
 
-MapItemType GameObject::GetType() {return HUMAN;}
+void GameObject::setMap(Map *newMap) {
+    map = newMap;
+}

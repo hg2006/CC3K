@@ -1,9 +1,5 @@
 #include "Character.h"
-#include "GameObject.h"
-#include "cc3klib.h"
 #include "Map.h"
-#include <cmath>
-#include <vector>
 
 Character::Character(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) : 
     GameObject{row, col, map}, type{type}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
@@ -15,9 +11,7 @@ void Character::deadNotify() {
     detach();
 }
 
-void Character::attackNotify() {} // this behaviour is purely virtual
-
-void Character::attacked(const int damage) {
+void Character::attacked(const int damage) {    
     int deductHP = -1 * std::ceil((1.0 * 100 / (100 + def)) * damage);
     changeHP(deductHP);
 }
@@ -40,4 +34,8 @@ std::vector<CellType> Character::detect() const {
 
 MapItemType Character::GetType() {
     return type;
+}
+
+int Character::getHP() {
+    return currentHP;
 }

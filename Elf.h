@@ -1,4 +1,9 @@
+#ifndef _ELF_H_
+#define _ELF_H_
+
 #include "Enemy.h"
+#include "BuffedPlayer.h"
+#include "cc3klib.h"
 
 class Elf : public Enemy {
 public:
@@ -6,3 +11,5 @@ public:
     ~Elf();
     void attackNotify() override;
 };
+
+#endif

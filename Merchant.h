@@ -1,3 +1,6 @@
+#ifndef _MERCHANT_H_
+#define _MERCHANT_H_
+
 #include "Enemy.h"
 
 class Merchant : public Enemy {
@@ -8,3 +11,5 @@ public:
     void attacked(const int damage) override;
     void moveDecision() override;
 };
+
+#endif

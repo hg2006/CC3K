@@ -1,4 +1,8 @@
+#ifndef _HALFLING_H_
+#define _HALFLING_H_
+
 #include "Enemy.h"
+#include "cc3klib.h"
 
 class Halfling : public Enemy {
 public:
@@ -6,3 +10,5 @@ public:
     ~Halfling();
     void attacked(const int damage) override;
 };
+
+#endif

@@ -21,6 +21,7 @@ public:
     virtual void endOfTurn();
     void changeGold(int goldNum);
     int getGold();
+    virtual int getScore();
 };
 
 #endif

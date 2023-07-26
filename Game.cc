@@ -68,8 +68,7 @@ void Game::GameOver(){
 }
 
 void Game::ScoreBoard(){
-  int score = 10;
-  //int score = player->getScore();
+  int score = player->getScore();
   cout << "--------------------------------" << endl;
   cout << "    Congratuations! You Win!    " << endl;
   cout << "    Your score is " << score << "." << endl;

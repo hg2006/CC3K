@@ -1,8 +1,16 @@
 #include "Map.h"
+#include "Game.h"
 
 int main(){
-    BuffedPlayer *player = new BuffedPlayer{};
-    Map* map = new Map{player};
-    map->InitializeMap();
-    map->RenderMap();
+    Game *game = new Game{"Goblin", GOBLIN};
+    game->Render();
+    game->LevelUp();
+    game->Render();
+    game->LevelUp();
+    game->Render();
+    game->LevelUp();
+    game->Render();
+    game->LevelUp();
+    game->Render();
+    game->LevelUp();
 }

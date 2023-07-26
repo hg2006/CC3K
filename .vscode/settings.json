@@ -3,6 +3,9 @@
     "__split_buffer": "cpp",
     "deque": "cpp",
     "vector": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "iosfwd": "cpp",
+    "__config": "cpp",
+    "__nullptr": "cpp"
   }
 }

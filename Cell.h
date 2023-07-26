@@ -11,6 +11,7 @@ protected:
 
     Cell();   // defaulted to be nullptr
     virtual char Render() const = 0;
+    char Render1();
     virtual CellType GetType() const = 0;
     GameObject* GetObject() const;
     void SetObject(GameObject* obj);

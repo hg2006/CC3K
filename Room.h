@@ -3,6 +3,7 @@
 
 #include "cc3klib.h"
 #include "Cell.h"
+#include "GameObject.h"
 
 class Room: public Cell{
 public:

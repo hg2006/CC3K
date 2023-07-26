@@ -219,6 +219,7 @@ void Map:: RenderMap() const{
 
         cur_col++;
     }
+    cout << endl;
 }
 
 GameObject* Map:: GetObject(int row, int col) const{

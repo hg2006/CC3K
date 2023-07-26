@@ -24,11 +24,7 @@
 #include "Halfling.h"
 #include "Merchant.h"
 #include "Dragon.h"
-
-// #include "test.h"
-
-class BuffedPlayer;
-
+#include "Shade.h"
 
 class Map{
 public:

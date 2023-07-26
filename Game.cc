@@ -22,8 +22,8 @@ Game::Game(string race, MapItemType type):
       maps.emplace_back(make_unique<Map>(this->player.get()));
     }
     Map &p = *(maps.front());
-    // mutate player map
     p.InitializeMap();
+    player->setMap(&p);
   }
 
 
@@ -39,7 +39,7 @@ void Game::LevelUp(){
   else {
     Map &p = *(maps.at(level));
     p.InitializeMap();
-    // mutate player map
+    player->setMap(&p);
     level += 1;
   }
 }
@@ -53,7 +53,7 @@ void Game::Render(){
   p.RenderMap();
   int gold = player->getGold();
   cout << "Race: " << playerRace << " Gold: " << gold << endl;
-  //cout << "HP: " << player->getHP() << endl;
+  cout << "HP: " << player->getHP() << endl;
   cout << "Atk: " << player->getAtk() << endl;
   cout << "Def: " << player->getDef() << endl;
   cout << "Action: " << endl; // TODO

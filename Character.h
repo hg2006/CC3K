@@ -21,6 +21,7 @@ public:
     void changeHP(const int HP);
     std::vector<CellType> detect() const;
     MapItemType GetType() override;
+    int getHP();
 };
 
 #endif

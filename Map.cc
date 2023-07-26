@@ -230,8 +230,8 @@ vector<CellType> Map:: GetViews(int row, int col) const{
     BuffedPlayer *player = this->player;
     int Player_x = player->GetCol();
     int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
-    int dist_x = Player_x - row;
-    int dist_y = Player_y - col;
+    int dist_x = Player_x - col;
+    int dist_y = Player_y - row;
 
     vector<CellType> result(9, OBSTACLE);
     for(int i = -1; i <= 1; i++){

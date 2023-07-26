@@ -23,6 +23,7 @@ public:
     virtual MapItemType GetType() = 0; 
     virtual void attacked(const int damage) = 0;
     virtual void moveDecision(){};
+    void setMap(Map *newMap);
 };
 
 #endif

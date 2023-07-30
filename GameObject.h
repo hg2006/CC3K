@@ -11,6 +11,7 @@ protected:
     Map *map;
 public:
     GameObject(int row, int col, Map *map);
+    GameObject();
     virtual ~GameObject();
     int GetRow();
     int GetCol();

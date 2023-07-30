@@ -1,8 +1,15 @@
-#include "Enemy.h"
+#ifndef _ORCS_H_
+#define _ORCS_H_
 
-class Orcs : Enemy {
+#include "Enemy.h"
+#include "BuffedPlayer.h"
+#include "cc3klib.h"
+
+class Orcs : public Enemy {
 public:
-    Orcs(int row, int col, string nameNotion = "Orcs", int currentHP = 180, int maxHP = 180, int atk = 30, int def = 25);
+    Orcs(int row, int col, Map *map, MapItemType type = ORCS, int currentHP = 180, int maxHP = 180, int atk = 30, int def = 25);
     ~Orcs();
-    void attacked(const int damage) override;
+    void attackNotify() override;
 };
+
+#endif

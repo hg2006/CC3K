@@ -10,15 +10,27 @@
 #include <map>
 #include <vector>
 #include <compare>
-using namespace std;
+#include <ctime>
+#include <algorithm>
+#include <random>
+#include <memory>
 
-enum MapItemType{HUMAN, DWARF, ELF, MERCHANT,HALFLING,
+
+
+class Game;
+class GameObject;
+class Map;
+class Cell;
+
+
+enum MapItemType{HUMAN, DWARF, ELF, MERCHANT, HALFLING,
 ORCS, DRAGON, SMALLGOLD, NORMALGOLD, MERCHANTHOARD, DRAGONHOARD,
-BA, BD, WA, WD, WA, WD, RH, PH};
+BA, BD, WA, WD, RH, PH, ASTAIR, SHADE, DROW, VAMPIRE, TROLL,
+GOBLIN};
 
-enum CellType{OBSTACLE, ROOM, PASSAGE, DOOR, STAIR, ENEMY, PLAYER, ITEM};
+enum CellType{OBSTACLE, ROOM, PASSAGE, DOOR, STAIR, ENEMY, PLAYER, POTION, TREASURE};
 
-enum PotionType{BA, BD, WA, WD, RH, PH};
+enum PotionType{PBA, PBD, PWA, PWD, PRH, PPH};
 
 
 #endif

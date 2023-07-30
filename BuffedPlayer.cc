@@ -5,7 +5,7 @@ BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int cur
 
 BuffedPlayer::~BuffedPlayer() {}
 
-void BuffedPlayer::takePotion(const PotionType potion) {}
+void BuffedPlayer::takePotion(const std::string direction) {}
 
 int BuffedPlayer::getAtk() const {
     return atk;

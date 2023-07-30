@@ -1,12 +1,24 @@
-#include "Player.h"
+#include "Decorator.h"
+#include "BuffedPlayer.h"
 #include "Map.h"
+#include "Potion.h"
+#include <cmath>
+#include <vector>
 
-Player::Player(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
-    BuffedPlayer{row, col, map, type, currentHP, maxHP, atk, def, gold} {}
+Decorator::Decorator(BuffedPlayer *component, int effect) :
+    component{component}, effect{effect} {}
 
-Player::~Player() {}
+Decorator::~Decorator() {delete component;}
 
-void Player::takePotion(const std::string direction) {
+int Decorator::getAtk() const {
+    return component->getAtk();
+}
+
+int Decorator::getDef() const {
+    return component->getDef();
+}
+
+void Decorator::takePotion(const std::string direction) {
     std::vector<CellType> ct = this->detect();
     GameObject *obj = nullptr;
     if (direction == "nw") {
@@ -45,8 +57,11 @@ void Player::takePotion(const std::string direction) {
 
     if (obj) {
         Potion *p = static_cast<Potion*>(obj);
-        const int changeHPNum = 10;
-        if (p->IsReveal) {
+        int changeHPNum = 10;
+        if (effect != 5) {
+            changeHPNum = 15;
+        }
+        if (p->IsRevealed()) {
             // print the name of this potion
         } else {
             // print unknow potion
@@ -57,15 +72,16 @@ void Player::takePotion(const std::string direction) {
         } else if (pt == PH) {
             changeHP(changeHPNum);
         } else {
-            map->takePotion(pt, 5);
+            map->takePotion(pt, effect);
         }
     } else {
         // print there's no potion at this position
     }
 }
 
-void Player::attackNotify(const std::string direction) {
+void Decorator::attackNotify(const std::string direction) {
     std::vector<CellType> ct = this->detect();
+    int atk = component->getAtk();
     if (direction == "nw") {
         if (ct[0] == ENEMY) {
             map->GetObject(row - 1, col - 1)->attacked(atk);
@@ -101,14 +117,15 @@ void Player::attackNotify(const std::string direction) {
     }
 }
 
-int Player::getAtk() const {
-    return atk;
+void Decorator::attacked(const int damage) {
+    int deductHP = -1 * std::ceil((1.0 * 100 / (100 + component->getDef())) * damage);
+    changeHP(deductHP);
 }
 
-int Player::getDef() const {
-    return def;
+void Decorator::enemyIsKilled() {
+    component->enemyIsKilled();
 }
 
-void enemyIsKilled() {}
-void endOfTurn() {}
-
+void Decorator::endOfTurn() {
+    component->endOfTurn();
+}

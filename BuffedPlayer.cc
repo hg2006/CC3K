@@ -3,9 +3,11 @@
 BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def, int gold) :
     Character{row, col, map, type, currentHP, maxHP, atk, def}, gold {gold} {}
 
+BuffedPlayer::BuffedPlayer() {}
+
 BuffedPlayer::~BuffedPlayer() {}
 
-void BuffedPlayer::takePotion(const PotionType potion) {}
+void BuffedPlayer::takePotion(const std::string direction) {}
 
 int BuffedPlayer::getAtk() const {
     return atk;

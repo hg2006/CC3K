@@ -16,11 +16,14 @@ struct Game {
     std::vector <std::unique_ptr <Map> > maps;
   public:
     Game(std::string race, MapItemType type);
+    void InitializeGame();
+    void InitByFile(std::string filename);
     int GameStatus ();
     void UpdateGame ();
     void LevelUp ();
     void Render ();
-    void Restart ();
+    void fRender ();
+    // void Restart ();
     void GameOver ();
     void ScoreBoard ();
 };

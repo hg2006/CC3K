@@ -9,6 +9,7 @@ Enemy::~Enemy() {}
 void Enemy::deadNotify() {
     map->GetPlayer()->enemyIsKilled();
     detach();
+    
 }
 
 void Enemy::attacked(const int damage) {

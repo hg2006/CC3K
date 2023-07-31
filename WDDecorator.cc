@@ -7,6 +7,9 @@ WDDecorator::WDDecorator(BuffedPlayer *component, int effect) :
 WDDecorator::~WDDecorator() {}
 
 WDDecorator::getDef() {
-    return component->getDef() - effect;
+    if (component->getDef() > effect) {
+        return component->getDef() - effect;
+    }
+    return 0;
 }
 

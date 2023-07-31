@@ -19,18 +19,11 @@ public:
     virtual void attach();
     virtual void detach();
     GameObject* GetObject();
-<<<<<<< Updated upstream
     virtual CellType GetCellType();
     virtual MapItemType GetType() = 0; 
     virtual void attacked(const int damage) = 0;
     virtual void moveDecision(){};
     void setMap(Map *newMap);
-=======
-    CellType GetCellType();
-    virtual MapItemType GetType();
-    virtual void attacked(const int damage) = 0;
-    virtual void Consume() = 0;
->>>>>>> Stashed changes
 };
 
 #endif

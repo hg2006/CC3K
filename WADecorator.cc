@@ -7,5 +7,8 @@ WADecorator::WADecorator(BuffedPlayer *component, int effect) :
 WADecorator::~WADecorator() {}
 
 WADecorator::getAtk() {
-    return component->getAtk() - effect;
+    if (component->getAtk() > effect) {
+        return component->getAtk() - effect;
+    }
+    return 0;
 }

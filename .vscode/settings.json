@@ -1,5 +1,12 @@
 {
-    "files.associations": {
-        "vector": "cpp"
-    }
+
+  "files.associations": {
+    "__split_buffer": "cpp",
+    "deque": "cpp",
+    "vector": "cpp",
+    "iostream": "cpp",
+    "iosfwd": "cpp",
+    "__config": "cpp",
+    "__nullptr": "cpp"
+  }
 }

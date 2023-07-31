@@ -7,9 +7,15 @@ BuffedPlayer::~BuffedPlayer() {}
 
 void BuffedPlayer::takePotion(const PotionType potion) {}
 
-int BuffedPlayer::getAtk() const {}
 
-int BuffedPlayer::getDef() const {}
+int BuffedPlayer::getAtk() const {
+    return atk;
+}
+
+int BuffedPlayer::getDef() const {
+    return def;
+}
+
 
 void BuffedPlayer::attackNotify(const std::string direction) {}
 
@@ -68,4 +74,9 @@ void BuffedPlayer::changeGold(int goldNum) {
 int BuffedPlayer::getGold() {
     return gold;
 }
+
+int BuffedPlayer::getScore() {
+    return gold;
+}
+
 

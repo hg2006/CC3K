@@ -15,9 +15,7 @@
 #include <random>
 #include <memory>
 
-
-
-class Game;
+struct Game;
 class GameObject;
 class Map;
 class Cell;

@@ -1,9 +1,10 @@
 #include "Map.h"
+#include "Game.h"
+using namespace std;
 
 int main(){
-    Map* map = new Map{nullptr};
-    BuffedPlayer *player = new Vampire{1,2,map};
-    map->player = player;
-    map->InitializeMap();
-    map->RenderMap();
+    Game *game = new Game{"Goblin", GOBLIN};
+    game->InitByFile("f1.txt");
+    game->fRender();
+
 }

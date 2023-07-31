@@ -134,7 +134,20 @@ Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
     this->genChamber5();
     // Line 18
     this->genChamber4();
-    this->genPassage2();
+
+    tiles.emplace_back (make_unique <VerticalWall>());
+    for (int i = 0; i < 5; ++i){
+      tiles.emplace_back (make_unique <Blank>());
+    }
+    tiles.emplace_back (make_unique <Passage>());
+    for (int i = 0; i < 11; ++i){
+      tiles.emplace_back (make_unique <Blank>());
+    }
+    tiles.emplace_back (make_unique <Passage>());
+    for (int i = 0; i < 20; ++i){
+      tiles.emplace_back (make_unique <Blank>());
+    }
+
     this->genChamber5();
     // Line 19
     this->genChamber4();
@@ -191,7 +204,7 @@ void Map:: RenderMap() const{
     
     BuffedPlayer *player = this->player;
     int Player_x = player->GetCol();
-    int Player_y = player->GetRow(); 
+    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
 
     for(auto &s:tiles){
         if(cur_col == howmanycol){
@@ -201,23 +214,26 @@ void Map:: RenderMap() const{
         }
 
         // If Player is located here
-        //if(cur_col == Player_x && cur_row == Player_y )cout << '@';
-        cout << s->Render();
+        if(cur_col == Player_x && cur_row == Player_y )cout << '@';
+        else {
+          cout << s->Render(); 
+        }
 
         cur_col++;
     }
+    cout << endl;
 }
 
 GameObject* Map:: GetObject(int row, int col) const{
-    (tiles.at(row * howmanycol + col))->GetObject();
+    return (tiles.at(row * howmanycol + col))->GetObject();
 }
 
 vector<CellType> Map:: GetViews(int row, int col) const{
     BuffedPlayer *player = this->player;
     int Player_x = player->GetCol();
-    int Player_y = player->GetRow(); 
-    int dist_x = Player_x - row;
-    int dist_y = Player_y - col;
+    int Player_y = player->GetRow(); /*Getx and Gety funcion required*/
+    int dist_x = Player_x - col;
+    int dist_y = Player_y - row;
 
     vector<CellType> result(9, OBSTACLE);
     for(int i = -1; i <= 1; i++){
@@ -248,7 +264,7 @@ vector<CellType> Map:: GetViews(int row, int col) const{
 
 void Map:: GenerateObject(int row, int col, MapItemType type){
         GameObject *newobj = nullptr;
-        switch (type){
+        switch (type) {
             case HUMAN:
                 newobj = new Human{row, col, this};
                 objects.emplace_back(newobj);
@@ -291,20 +307,22 @@ void Map:: GenerateObject(int row, int col, MapItemType type){
             //     this->Attach(row, col, newobj);
             //     break;
             // case NORMALGOLD:
-            //     newobj = new NormalGold{row, col,};
+            //     newobj = new NormalGold{row, col, this};
             //     objects.emplace_back(newobj);
             //     this->Attach(row, col, newobj);
             //     break;
             // case MERCHANTHOARD:
-            //     newobj = new MerchantHoard{row, col};
+            //     newobj = new MerchantHoard{row, col, this};
             //     objects.emplace_back(newobj);
             //     this->Attach(row, col, newobj);
             //     break;
             // case DRAGONHOARD:
-            //     newobj = new DragonHoard{row, col};
+            //     newobj = new DragonHoard{row, col, this};
             //     objects.emplace_back(newobj);
             //     this->Attach(row, col, newobj);
             //     break;
+              default:
+                break;
         }
             // To be further implemented since ctor required    
             // case BA:
@@ -662,7 +680,7 @@ void Map:: InitializeMap(){
     vector < vector <int> > chambers {chamber1, chamber2, chamber3, chamber4, chamber5};
 
     // generate player coordinate
-    // ***TODO: Door?
+
     vector <int> chambernum {0, 1, 2, 3, 4};
     shuffle(chambernum.begin(), chambernum.end(), rd);
     int playerindex = chambernum.back();
@@ -702,8 +720,8 @@ void Map:: InitializeMap(){
             try {
                 this->InsertDragonHoard(chambers, goldchamber);
             }
-            catch (int x){
-                int newindex = (x + rand()%4 + 1) % 5;
+            catch (...){
+                int newindex = (goldchamber + rand()%4 + 1) % 5;
                 this->InsertDragonHoard(chambers, newindex);
             }
         }
@@ -741,11 +759,12 @@ void Map:: InitializeMap(){
         try {
             this->InsertChamber(chambers, enemychamber, etype);
         }
-        catch (int x){
-            int newindex = (x + rand()%4 + 1) % 5;
+        catch (...){
+            int newindex = (enemychamber + rand()%4 + 1) % 5;
             this->InsertChamber(chambers, newindex, etype);
         }
     }
+
 }
 
 void Map::InsertChamber(vector < vector <int> > &chambers, int index, MapItemType type){
@@ -792,3 +811,4 @@ void Map::InsertBoth(vector <int> &chamber, int row, int col){
     this->GenerateObject(coord/howmanycol, coord%howmanycol, DRAGON);
     chamber.erase(find(chamber.begin(), chamber.end(), coord));
 }
+

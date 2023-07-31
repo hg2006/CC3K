@@ -9,5 +9,6 @@ SmallGold::~SmallGold() {}
 
 MapItemType SmallGold::Consume() {
     detach();
+    map->getPlayer()->changeGold(1);
     return SMALLGOLD;
 }

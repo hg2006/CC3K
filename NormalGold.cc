@@ -9,5 +9,6 @@ NormalGold::~NormalGold() {}
 
 MapItemType NormalGold::Consume() {
     detach();
+    map->getPlayer()->changeGold(2);
     return NORMALGOLD;
 }

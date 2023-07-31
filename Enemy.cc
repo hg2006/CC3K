@@ -1,5 +1,7 @@
 #include "Enemy.h"
 #include "Map.h"
+#include "SmallGold.h"
+#include "NormalGold.h"
 
 Enemy::Enemy(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
     Character{row, col, map, type, currentHP, maxHP, atk, def} {}
@@ -7,9 +9,16 @@ Enemy::Enemy(int row, int col, Map *map, MapItemType type, int currentHP, int ma
 Enemy::~Enemy() {}
 
 void Enemy::deadNotify() {
-    map->GetPlayer()->enemyIsKilled();
     detach();
-    
+    int var = std::rand() % 2;
+    if (var == 1) {
+        SmallGold *SGold = new SmallGold(row, col, map);
+        map->Attach(SGold);
+    } else {
+        NormalGold *NGold = new NormalGold(row, col, map);
+        map->Attach(NGold);
+    }
+    map->GetPlayer()->enemyIsKilled();
 }
 
 void Enemy::attacked(const int damage) {

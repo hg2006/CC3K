@@ -9,6 +9,7 @@ DragonHoard::~DragonHoard() {}
 
 MapItemType DragonHoard::Consume() {
     detach();
+    map->getPlayer()->changeGold(6);
     return DRAGONHOARD;
 }
 

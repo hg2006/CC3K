@@ -9,5 +9,6 @@ MerchantHoard::~MerchantHoard() {}
 
 MapItemType MerchantHoard::Consume() {
     detach();
+    map->getPlayer()->changeGold(4);
     return MERCHANTHOARD;
 }

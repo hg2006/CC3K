@@ -24,6 +24,7 @@ public:
     virtual void attacked(const int damage) = 0;
     virtual void moveDecision(){};
     void setMap(Map *newMap);
+
 };
 
 #endif

@@ -26,6 +26,7 @@
 #include "Dragon.h"
 #include "Shade.h"
 
+
 class Map{
 public:
     std::vector < std::unique_ptr<Cell>> tiles;   // A vector of 1975 elements
@@ -66,7 +67,9 @@ public:
     void genChamber5Bottom(int choice = 0);
 
 public:
+
     friend struct Game;
+
     GameObject* GetObject(int row, int col) const;
     std::vector <CellType> GetViews(int row, int col) const;
     void GenerateObject(int row, int col, MapItemType type);

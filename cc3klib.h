@@ -15,8 +15,6 @@
 #include <random>
 #include <memory>
 
-
-
 struct Game;
 class GameObject;
 class Map;

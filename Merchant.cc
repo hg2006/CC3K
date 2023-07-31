@@ -13,6 +13,7 @@ void Merchant::attacked(const int damage) {
     if (map->GetPlayer()->GetType() == VAMPIRE) {
         map->GetPlayer()->changeHP(5);
     }
+
 }
 
 void Merchant::moveDecision() {
@@ -25,7 +26,9 @@ void Merchant::moveDecision() {
             }
         }
     }
+
     map->Detach(row, col);
+
     int i = std::rand() % 9;
     while (ct[i] != ROOM || i == 4)
     {
@@ -41,5 +44,6 @@ void Merchant::moveDecision() {
         col = col - 1 + i % 3;
     }
     map->Attach(row, col, this);
+
 }
 

@@ -3,7 +3,7 @@
 
 #include "Enemy.h"
 #include "cc3klib.h"
-//#include "DragonHoard.h"
+#include "DragonHoard.h"
 class DragonHoard;
 
 class Dragon : public Enemy {

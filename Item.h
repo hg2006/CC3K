@@ -6,9 +6,9 @@
 
 class Item : public GameObject{
 public:
-    Item();
+    Item(int row, int col, Map *map);
     virtual ~Item();
     virtual MapItemType Consume() = 0;
-}
+};
 
 #endif

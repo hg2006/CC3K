@@ -2,10 +2,10 @@
 #include "Decorator.h"
 
 BADecorator::BADecorator(BuffedPlayer *component, int effect) :
-    Decorator{component, effect}
+    Decorator{component, effect} {}
 
 BADecorator::~BADecorator() {}
 
-BADecorator::getAtk() {
+int BADecorator::getAtk() const {
     return component->getAtk() + effect;
 }

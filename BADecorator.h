@@ -8,7 +8,7 @@ class BADecorator : public Decorator {
 public:
     BADecorator(BuffedPlayer *component, int effect);
     ~BADecorator();
-    int getAtk() override;
+    int getAtk() const override;
 };
 
 #endif

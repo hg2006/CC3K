@@ -2,11 +2,11 @@
 #include "Decorator.h"
 
 BDDecorator::BDDecorator(BuffedPlayer *component, int effect) :
-    Decorator{component, effect}
+    Decorator{component, effect} {}
 
 BDDecorator::~BDDecorator() {}
 
-BDDecorator::getDef() {
+int BDDecorator::getDef() const {
     return component->getDef() + effect;
 }
 

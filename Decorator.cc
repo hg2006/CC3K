@@ -118,7 +118,7 @@ void Decorator::attackNotify(const std::string direction) {
 }
 
 void Decorator::attacked(const int damage) {
-    int deductHP = -1 * std::ceil((1.0 * 100 / (100 + getDef())) * damage);
+    int deductHP = -1 * std::ceil((1.0 * 100 / (100 + component->getDef())) * damage);
     changeHP(deductHP);
 }
 

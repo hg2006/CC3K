@@ -8,7 +8,7 @@ class WDDecorator : public Decorator {
 public:
     WDDecorator(BuffedPlayer *component, int effect);
     ~WDDecorator();
-    int getDef() override;
+    int getDef() const override;
 };
 
 #endif

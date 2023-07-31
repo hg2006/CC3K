@@ -5,9 +5,9 @@
 
 class Potion : public Item {
 public:
-    Potion();
+    Potion(int row, int col, Map *map);
     virtual ~Potion();
     virtual bool IsRevealed();
-}
+};
 
 #endif

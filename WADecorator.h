@@ -8,7 +8,7 @@ class WADecorator : public Decorator {
 public:
     WADecorator(BuffedPlayer *component, int effect);
     ~WADecorator();
-    int getAtk() override;
+    int getAtk() const override;
 };
 
 #endif

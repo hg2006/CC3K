@@ -1,4 +1,6 @@
 #include "Drow.h"
+#include "Map.h"
+#include "Potion.h"
 #include "cc3klib.h"
 #include <vector>
 
@@ -57,14 +59,8 @@ void Drow::takePotion(const std::string direction) {
             changeHP(changeHPNum);
         } else if (pt == PH) {
             changeHP(changeHPNum);
-        } else if (pt == BA) {
-            this = new BADecorator(this, 7);
-        } else if (pt == BD) {
-            this = new BDDecorator(this, 7);
-        } else if (pt == WA) {
-            this = new WADecorator(this, 7);
-        } else if (pt == WD) {
-            this = new WDDecorator(this, 7);
+        } else {
+            map->takePotion(pt, 8);
         }
     } else {
         // print there's no potion at this position

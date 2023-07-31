@@ -56,14 +56,8 @@ void Player::takePotion(const std::string direction) {
             changeHP(changeHPNum);
         } else if (pt == PH) {
             changeHP(changeHPNum);
-        } else if (pt == BA) {
-            this = new BADecorator(this, 5);
-        } else if (pt == BD) {
-            this = new BDDecorator(this, 5);
-        } else if (pt == WA) {
-            this = new WADecorator(this, 5);
-        } else if (pt == WD) {
-            this = new WDDecorator(this, 5);
+        } else {
+            map->takePotion(pt, 5);
         }
     } else {
         // print there's no potion at this position

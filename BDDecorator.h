@@ -8,7 +8,7 @@ class BDDecorator : public Decorator {
 public:
     BDDecorator(BuffedPlayer *component, int effect);
     ~BDDecorator();
-    int getDef() override;
+    int getDef() const override;
 };
 
 #endif

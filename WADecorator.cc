@@ -2,13 +2,10 @@
 #include "Decorator.h"
 
 WADecorator::WADecorator(BuffedPlayer *component, int effect) :
-    Decorator{component, effect}
+    Decorator{component, effect} {}
 
 WADecorator::~WADecorator() {}
 
-WADecorator::getAtk() {
-    if (component->getAtk() > effect) {
-        return component->getAtk() - effect;
-    }
-    return 0;
+int WADecorator::getAtk() const {
+    return component->getAtk() - effect;
 }

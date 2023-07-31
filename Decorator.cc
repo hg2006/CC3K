@@ -1,5 +1,7 @@
 #include "Decorator.h"
 #include "BuffedPlayer.h"
+#include "Map.h"
+#include "Potion.h"
 #include <cmath>
 #include <vector>
 
@@ -55,12 +57,11 @@ void Decorator::takePotion(const std::string direction) {
 
     if (obj) {
         Potion *p = static_cast<Potion*>(obj);
-        if (effect == 5) {
-            const int changeHPNum = 10;
-        } else {
-            const int changeHPNum = 15;
+        int changeHPNum = 10;
+        if (effect != 5) {
+            changeHPNum = 15;
         }
-        if (p->IsReveal) {
+        if (p->IsRevealed()) {
             // print the name of this potion
         } else {
             // print unknow potion
@@ -70,14 +71,8 @@ void Decorator::takePotion(const std::string direction) {
             changeHP(changeHPNum);
         } else if (pt == PH) {
             changeHP(changeHPNum);
-        } else if (pt == BA) {
-            this = new BADecorator(this, effect);
-        } else if (pt == BD) {
-            this = new BDDecorator(this, effect);
-        } else if (pt == WA) {
-            this = new WADecorator(this, effect);
-        } else if (pt == WD) {
-            this = new WDDecorator(this, effect);
+        } else {
+            map->takePotion(pt, effect);
         }
     } else {
         // print there's no potion at this position

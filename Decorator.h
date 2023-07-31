@@ -8,7 +8,7 @@ protected:
     BuffedPlayer *component;
     int effect;
 public:
-    Decorator(BuffedPlayer *component, int effect);
+    Decorator(BuffedPlayer *bp, int effect);
     virtual ~Decorator();
     virtual int getAtk() const override;
     virtual int getDef() const override;

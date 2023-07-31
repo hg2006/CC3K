@@ -5,6 +5,8 @@ Character::Character(int row, int col, Map *map, MapItemType type, int currentHP
     GameObject{row, col, map}, type{type}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
 {}
 
+Character::Character() {}
+
 Character::~Character() {}
 
 void Character::deadNotify() {

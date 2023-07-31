@@ -16,8 +16,13 @@ public:
     virtual ~Character() = 0;
     // void setMap(Map *map);
     virtual void deadNotify();
+<<<<<<< Updated upstream
     virtual void attackNotify(){};
     virtual void attacked(const int damage);
+=======
+    virtual void attackNotify();
+    virtual void attacked(const int damage) override;
+>>>>>>> Stashed changes
     void changeHP(const int HP);
     std::vector<CellType> detect() const;
     MapItemType GetType() override;

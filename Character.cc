@@ -5,6 +5,8 @@ Character::Character(int row, int col, Map *map, MapItemType type, int currentHP
     GameObject{row, col, map}, type{type}, currentHP{currentHP}, maxHP{maxHP}, atk{atk}, def{def}
 {}
 
+Character::Character() {}
+
 Character::~Character() {}
 
 void Character::deadNotify() {
@@ -12,7 +14,6 @@ void Character::deadNotify() {
 }
 
 void Character::attacked(const int damage) {    
-
     int deductHP = -1 * std::ceil((1.0 * 100 / (100 + def)) * damage);
     changeHP(deductHP);
 }

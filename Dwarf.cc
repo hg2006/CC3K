@@ -1,7 +1,6 @@
 #include "Dwarf.h"
 #include "Map.h"
 
-
 Dwarf::Dwarf(int row, int col, Map *map, MapItemType type, int currentHP, int maxHP, int atk, int def) :
     Enemy{row, col, map, type, currentHP, maxHP, atk, def} {}
 
@@ -14,4 +13,3 @@ void Dwarf::attacked(const int damage) {
         map->GetPlayer()->changeHP(-5);
     }
 }
-

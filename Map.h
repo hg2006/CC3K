@@ -24,8 +24,6 @@
 #include "Halfling.h"
 #include "Merchant.h"
 #include "Dragon.h"
-#include "Shade.h"
-
 
 class Map{
 public:
@@ -67,9 +65,7 @@ public:
     void genChamber5Bottom(int choice = 0);
 
 public:
-
     friend struct Game;
-
     GameObject* GetObject(int row, int col) const;
     std::vector <CellType> GetViews(int row, int col) const;
     void GenerateObject(int row, int col, MapItemType type);

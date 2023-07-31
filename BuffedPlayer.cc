@@ -5,8 +5,7 @@ BuffedPlayer::BuffedPlayer(int row, int col, Map *map, MapItemType type, int cur
 
 BuffedPlayer::~BuffedPlayer() {}
 
-void BuffedPlayer::takePotion(const PotionType potion) {}
-
+void BuffedPlayer::takePotion(const std::string direction) {}
 
 int BuffedPlayer::getAtk() const {
     return atk;
@@ -15,7 +14,6 @@ int BuffedPlayer::getAtk() const {
 int BuffedPlayer::getDef() const {
     return def;
 }
-
 
 void BuffedPlayer::attackNotify(const std::string direction) {}
 
@@ -78,5 +76,4 @@ int BuffedPlayer::getGold() {
 int BuffedPlayer::getScore() {
     return gold;
 }
-
 

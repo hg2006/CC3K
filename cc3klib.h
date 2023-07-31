@@ -15,7 +15,9 @@
 #include <random>
 #include <memory>
 
-struct Game;
+
+
+class Game;
 class GameObject;
 class Map;
 class Cell;
@@ -26,7 +28,7 @@ ORCS, DRAGON, SMALLGOLD, NORMALGOLD, MERCHANTHOARD, DRAGONHOARD,
 BA, BD, WA, WD, RH, PH, ASTAIR, SHADE, DROW, VAMPIRE, TROLL,
 GOBLIN};
 
-enum CellType{OBSTACLE, ROOM, PASSAGE, DOOR, STAIR, ENEMY, PLAYER, ITEM};
+enum CellType{OBSTACLE, ROOM, PASSAGE, DOOR, STAIR, ENEMY, PLAYER, POTION, TREASURE};
 
 enum PotionType{PBA, PBD, PWA, PWD, PRH, PPH};
 

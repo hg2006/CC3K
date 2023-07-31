@@ -14,7 +14,6 @@ public:
     virtual void moveDecision();
     CellType GetCellType() override;
     virtual void attacked(const int damage) override;
-
 };
 
 #endif

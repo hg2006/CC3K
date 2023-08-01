@@ -17,7 +17,7 @@
 
 
 
-struct Game;
+class Game;
 class GameObject;
 class Map;
 class Cell;

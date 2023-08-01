@@ -1,7 +1,50 @@
 #include "Map.h"
 using namespace std;
+#include "BADecorator.h"
+#include "BAPotion.h"
+#include "BDPotion.h"
+#include "BDDecorator.h"
+#include "Blank.h"
+#include "BuffedPlayer.h"
+#include "Cell.h"
+#include "Character.h"
+#include "Decorator.h"
+#include "Door.h"
+#include "DragonHoard.h"
+#include "Drow.h"
+#include "Dwarf.h"
+#include "Dragon.h"
+#include "Elf.h"
+#include "Enemy.h"
+#include "GameObject.h"
+#include "Goblin.h"
+#include "Halfling.h"
+#include "HorizontalWall.h"
+#include "Human.h"
+#include "Item.h"
+#include "Merchant.h"
+#include "MerchantHoard.h"
+#include "NormalGold.h"
+#include "Orcs.h"
+#include "Passage.h"
+#include "Player.h"
+#include "Potion.h"
+#include "PHPotion.h"
+#include "RHPotion.h"
+#include "Room.h"
+#include "Shade.h"
+#include "Stair.h"
+#include "SmallGold.h"
+#include "Troll.h"
+#include "Vampire.h"
+#include "VerticalWall.h"
+#include "WADecorator.h"
+#include "WAPotion.h"
+#include "WDDecorator.h"
+#include "WDPotion.h"
 
-Map::Map (BuffedPlayer* p): tiles { vector<unique_ptr<Cell>>{}}, player {p}
+Map::Map (BuffedPlayer* p): 
+  tiles { vector<unique_ptr<Cell>>{}}, player {p}
   { // create the initial map through hard coding
     this->genBoarderLine();
     this->genBlankLine();
@@ -219,7 +262,7 @@ void Map:: RenderMap() const{
 
         cur_col++;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 GameObject* Map:: GetObject(int row, int col) const{
@@ -257,80 +300,99 @@ vector<CellType> Map:: GetViews(int row, int col) const{
     return result;
 }
 
-    
+void Map:: TakePotion(MapItemType type, int amount){
+  switch(type){
+    case BA:
+      decorators.emplace_back(make_unique<BADecorator>(player, amount));
+      break;
+    case BD:
+      decorators.emplace_back(make_unique<BDDecorator>(player, amount));
+      break;
+    case WA:
+      decorators.emplace_back(make_unique<WADecorator>(player, amount));
+      break;
+    case WD:
+      decorators.emplace_back(make_unique<WDDecorator>(player, amount));
+      break;
+  }
+}
 
 
 void Map:: GenerateObject(int row, int col, MapItemType type){
-        GameObject *newobj = nullptr;
-        switch (type) {
-            case HUMAN:
-                newobj = new Human{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-        
-            case DWARF:
-                newobj = new Dwarf{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case ELF:
-                newobj = new Elf{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case ORCS:
-                newobj = new Orcs{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case MERCHANT:
-                newobj = new Merchant{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case DRAGON:
-                newobj = new Dragon{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            case HALFLING:
-                newobj = new Halfling{row, col, this};
-                objects.emplace_back(newobj);
-                this->Attach(row, col, newobj);
-                break;
-            // case SMALLGOLD:
-            //     newobj = new SmallGold{row, col, this};
-            //     objects.emplace_back(newobj);
-            //     this->Attach(row, col, newobj);
-            //     break;
-            // case NORMALGOLD:
-            //     newobj = new NormalGold{row, col, this};
-            //     objects.emplace_back(newobj);
-            //     this->Attach(row, col, newobj);
-            //     break;
-            // case MERCHANTHOARD:
-            //     newobj = new MerchantHoard{row, col, this};
-            //     objects.emplace_back(newobj);
-            //     this->Attach(row, col, newobj);
-            //     break;
-            // case DRAGONHOARD:
-            //     newobj = new DragonHoard{row, col, this};
-            //     objects.emplace_back(newobj);
-            //     this->Attach(row, col, newobj);
-            //     break;
-              default:
-                break;
-        }
-            // To be further implemented since ctor required    
-            // case BA:
-            // case BD:
-            // case WA:
-            // case WD:
-            // case RH:
-            // case PH:
-        // }
+  switch (type) {
+      case HUMAN:
+          objects.emplace_back(make_unique<Human>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case DWARF:
+          objects.emplace_back(make_unique<Dwarf>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case ELF:
+          objects.emplace_back(make_unique<Elf>(row, col, this));
+          this->Attach(row, col, objects.back().get()); 
+          break;
+      case ORCS:
+          objects.emplace_back(make_unique<Orcs>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case MERCHANT:
+          objects.emplace_back(make_unique<Merchant>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case DRAGON:
+          objects.emplace_back(make_unique<Dragon>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case HALFLING:
+          objects.emplace_back(make_unique<Halfling>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case SMALLGOLD:
+          objects.emplace_back(make_unique<SmallGold>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case NORMALGOLD:
+          objects.emplace_back(make_unique<NormalGold>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case MERCHANTHOARD:
+          objects.emplace_back(make_unique<MerchantHoard>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case DRAGONHOARD:
+          objects.emplace_back(make_unique<DragonHoard>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case BA:
+          objects.emplace_back(make_unique<BAPotion>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case BD:
+          objects.emplace_back(make_unique<BDPotion>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case WA:
+          objects.emplace_back(make_unique<WAPotion>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case WD:
+          objects.emplace_back(make_unique<WDPotion>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case RH:
+          objects.emplace_back(make_unique<RHPotion>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      case PH:
+          objects.emplace_back(make_unique<PHPotion>(row, col, this));
+          this->Attach(row, col, objects.back().get());
+          break;
+      default:
+          break;           
+  }  
 }
+
 
 void Map:: UpdateMap(){
     // Decision for player already done in interface?
@@ -683,8 +745,8 @@ void Map:: InitializeMap(){
     int playerindex = chambernum.back();
     vector <int> & playerchamber = chambers.at(playerindex);
     int coord = playerchamber.back();
-    this->player->SetRow(coord/howmanycol);
-    this->player->SetCol(coord%howmanycol);
+    playerrow = coord/howmanycol;
+    playercol = coord%howmanycol;
     playerchamber.pop_back();
     
     // generate stair

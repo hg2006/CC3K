@@ -2,44 +2,24 @@
 #define _MAP_H_
 
 #include "cc3klib.h"
-#include "Cell.h"
-#include "Room.h"
-#include "Passage.h"
-#include "Door.h"
-#include "Blank.h"
-#include "VerticalWall.h"
-#include "HorizontalWall.h"
-#include "Stair.h"
-#include "BuffedPlayer.h"
-#include "Player.h"
-#include "Drow.h"
-#include "Vampire.h"
-#include "Troll.h"
-#include "Goblin.h"
-#include "Enemy.h"
-#include "Human.h"
-#include "Dwarf.h"
-#include "Elf.h"
-#include "Orcs.h"
-#include "Halfling.h"
-#include "Merchant.h"
-#include "Dragon.h"
-#include "Shade.h"
+class BuffedPlayer;
+class Decorator;
 
 class Map{
-public:
     std::vector < std::unique_ptr<Cell>> tiles;   // A vector of 1975 elements
     std::vector <std::unique_ptr<GameObject>> objects;
+    std::vector <std::unique_ptr<Decorator>> decorators;
     BuffedPlayer *player;
     const int howmanyrow = 25;
     const int howmanycol = 79;
-    
+    int playerrow = 0;
+    int playercol = 0;
+
     Map(BuffedPlayer *p);
     ~Map();
     void InitializeMap();
     void RenderMap() const;
     void UpdateMap();
-    BuffedPlayer *GetPlayer(){return player;}
 
     void InsertChamber(std::vector < std::vector <int> > &chambers, int index, MapItemType type);
     void InsertDragonHoard(std::vector < std::vector <int> > &chambers, int index);
@@ -65,14 +45,18 @@ public:
     void genPassage3 (int choice = 0);
     void genChamber5Bottom(int choice = 0);
 
+    int index_convert(int row, int col) const;
+
+
 public:
-    friend struct Game;
+    friend class Game;
+    BuffedPlayer *GetPlayer(){return player;}
+    void TakePotion(MapItemType po, int amount);
     GameObject* GetObject(int row, int col) const;
     std::vector <CellType> GetViews(int row, int col) const;
     void GenerateObject(int row, int col, MapItemType type);
     void Attach(int row, int col, GameObject* obj); // attach a Gameobj to a specific cell
     void Detach(int row, int col);                  // detach a Gameobj from a specific cell 
-    int index_convert(int row, int col) const;
 };
 
 

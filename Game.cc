@@ -27,11 +27,22 @@ Game::Game(string race, MapItemType type):
     }
   }
 
+BuffedPlayer& Game::GetPlayer(){
+  return *player;
+}
+
+Map& Game::GetMap(){
+  return *(maps.at(level-1));
+}
 
 void Game::InitializeGame(){
+  for (auto &p : maps){
+    (*p).InitializeMap();
+  }
   Map &p = *(maps.front());
-  p.InitializeMap();
   player->setMap(&p);
+  player->SetRow(p.playerrow);
+  player->SetCol(p.playercol);
 }
 
 void Game::InitByFile(string filename){
@@ -98,15 +109,19 @@ void Game::InitByFile(string filename){
           p.GenerateObject(i/colsize, i%colsize, DRAGONHOARD);
           break;
         case '@':
-          player->SetRow(i/colsize);
-          player->SetCol(i%colsize);
+          p.playerrow = i/colsize;
+          p.playercol = i%colsize;
           break;
-        // case '\\':
-        //   p.GenerateObject(i/colsize, i%colsize, STAIR);
-        //   break;
+         case '\\':
+           p.GenerateObject(i/colsize, i%colsize, ASTAIR);
+           break;
       }
     }
   }
+  Map &p = *(maps.front());
+  player->setMap(&p);
+  player->SetRow(p.playerrow);
+  player->SetCol(p.playercol);
 }
 
 void Game::UpdateGame(){
@@ -120,8 +135,9 @@ void Game::LevelUp(){
   }
   else {
     Map &p = *(maps.at(level));
-    p.InitializeMap();
     player->setMap(&p);
+    player->SetRow(p.playerrow);
+    player->SetCol(p.playercol);
     level += 1;
   }
 }
@@ -139,12 +155,6 @@ void Game::Render(){
   cout << "Atk: " << player->getAtk() << endl;
   cout << "Def: " << player->getDef() << endl;
   cout << "Action: " << endl; // TODO
-}
-
-void Game::fRender(){
-  for (auto &p : maps){
-    p->RenderMap();
-  }
 }
 
 

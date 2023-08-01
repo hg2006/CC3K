@@ -23,17 +23,21 @@ void GameObject::SetCol(int col) {
 }
 
 void GameObject::attach() {
+
     map->Attach(row, col, this);
 }
 
 void GameObject::detach() {
     map->Detach(row, col);
+
 }
 
 GameObject* GameObject::GetObject(){return this;}
 
 CellType GameObject:: GetCellType() {return OBSTACLE;} 
 
+
 void GameObject::setMap(Map *newMap) {
     map = newMap;
 }
+

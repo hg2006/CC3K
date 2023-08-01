@@ -5,6 +5,7 @@
 class BuffedPlayer;
 class Decorator;
 
+
 class Map{
     std::vector < std::unique_ptr<Cell>> tiles;   // A vector of 1975 elements
     std::vector <std::unique_ptr<GameObject>> objects;

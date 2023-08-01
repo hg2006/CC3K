@@ -4,7 +4,9 @@
 #include "GameObject.h"
 #include "cc3klib.h"
 
+
 class Character : public GameObject{
+
 protected:
     MapItemType type;
     int currentHP;
@@ -21,7 +23,9 @@ public:
     void changeHP(const int HP);
     std::vector<CellType> detect() const;
     MapItemType GetType() override;
+
     int getHP();
+
 };
 
 #endif

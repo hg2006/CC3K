@@ -177,6 +177,7 @@ Map::Map (BuffedPlayer* p):
     this->genChamber5();
     // Line 18
     this->genChamber4();
+
     tiles.emplace_back (make_unique <VerticalWall>());
     for (int i = 0; i < 5; ++i){
       tiles.emplace_back (make_unique <Blank>());
@@ -189,6 +190,7 @@ Map::Map (BuffedPlayer* p):
     for (int i = 0; i < 20; ++i){
       tiles.emplace_back (make_unique <Blank>());
     }
+
     this->genChamber5();
     // Line 19
     this->genChamber4();
@@ -740,6 +742,7 @@ void Map:: InitializeMap(){
     vector < vector <int> > chambers {chamber1, chamber2, chamber3, chamber4, chamber5};
 
     // generate player coordinate
+
     vector <int> chambernum {0, 1, 2, 3, 4};
     shuffle(chambernum.begin(), chambernum.end(), rd);
     int playerindex = chambernum.back();

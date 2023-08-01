@@ -11,6 +11,7 @@ void Enemy::deadNotify() {
     detach();
 }
 
+
 void Enemy::attacked(const int damage) {
     int deductHP = -1 * std::ceil((1.0 * 100 / (100 + def)) * damage);
     changeHP(deductHP);
@@ -39,6 +40,7 @@ void Enemy::moveDecision() {
     }
     
     map->Detach(row, col);
+
     int i = std::rand() % 9;
     while (ct[i] != ROOM || i == 4)
     {
@@ -48,12 +50,14 @@ void Enemy::moveDecision() {
     if (ct[i] == ROOM) {
         if (i < 3) {
             --row;
+
         } else if (i > 5) {
             ++row;
         }
         col = col - 1 + i % 3;
     }
     map->Attach(row, col, this);
+
 }
 
 CellType Enemy:: GetCellType(){

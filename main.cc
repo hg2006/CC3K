@@ -1,6 +1,7 @@
 #include "Game.h"
 using namespace std;
 
+
 int main(int argc, char *argv[]){  // NOTE: Input validity assumed
     string race; 
     while (cin >> race && race != "q"){
